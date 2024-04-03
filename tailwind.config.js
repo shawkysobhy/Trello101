@@ -3,10 +3,9 @@ export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
-			      boxShadow: {
-        'custom': '0px 4px 6px #364e7e1a',
-      }
-,
+			boxShadow: {
+				custom: '0px 4px 6px #364e7e1a',
+			},
 			fontSize: {
 				xs: '12px', // 12px
 				sm: '14px', // 14px
@@ -27,7 +26,7 @@ export default {
 				background: 'rgba(var(--background))',
 				brand: 'rgba(var(--brand))',
 				secondaryBackground: 'rgba(var(--secondaryBackground))',
-				title: 'rgba(var(--title))',
+				text: 'rgba(var(--text))',
 				subTitle: 'rgba(var(--subTitle))',
 				scroll: 'rgba(var(--scroll))',
 				border: 'rgba(var(--border))',
@@ -35,5 +34,7 @@ export default {
 			},
 		},
 	},
+
 	plugins: [require('daisyui')],
+	darkMode: 'class',
 };

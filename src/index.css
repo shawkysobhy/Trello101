@@ -14,6 +14,14 @@ html {
 }
 body {
 	overflow: hidden;
+	--brand: 99, 95, 199;
+	--background: 43, 44, 55;
+	--secondaryBackground: 32, 33, 44;
+	--text: 255, 255, 255;
+	--subTitle: 255, 255, 255;
+	--scroll: 62, 63, 78;
+	--border: 62, 63, 78;
+	--gray: 130, 143, 163;
 }
 .dark {
 	--brand: 99, 95, 199;
@@ -34,6 +42,10 @@ body {
 	--scroll: 130, 143, 163;
 	--gray: 130, 143, 163;
 }
+/* .modal-box {
+	max-width: none;
+	width: 480px;
+} */
 
 ::-webkit-scrollbar {
 	width: 6px;

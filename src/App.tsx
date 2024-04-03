@@ -1,6 +1,7 @@
 import Board from './components/Board';
 import Header from './components/Header';
 import SideBar from './components/SideBar';
+import BoardCreateModal from './ui/BoardCreateModal';
 function App() {
 	return (
 		<div className='flex flex-col h-screen dark bg-secondaryBackground'>
@@ -9,6 +10,9 @@ function App() {
 				<SideBar />
 				<Board />
 			</main>
+			{/* You can open the modal using document.getElementById('ID').showModal() method */}
+
+			<BoardCreateModal />
 		</div>
 	);
 }

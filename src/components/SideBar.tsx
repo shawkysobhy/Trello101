@@ -24,7 +24,17 @@ export default function SideBar() {
 					<BoardButton>Marketing Plan</BoardButton>
 					<BoardButton>Roadmap</BoardButton>
 					<BoardButton>Projects Charts</BoardButton>
-					<button className='flex items-center w-[90%] py-6 space-x-4 text-base font-bold text-brand  pl-14 hover:opacity-65 transition-all duration-300'>
+					<button
+						onClick={() => {
+							if (document) {
+								(
+									document.getElementById(
+										'create_board_modal'
+									) as HTMLFormElement
+								).showModal();
+							}
+						}}
+						className='flex items-center w-[90%] py-6 space-x-4 text-base font-bold text-brand  pl-14 hover:opacity-65 transition-all duration-300'>
 						<BoardIcon color='#635fc7' />
 						<p>+ Create New Board</p>
 					</button>{' '}

@@ -1,5 +1,5 @@
 import iconVEllipsis from '../assets/icon-vertical-ellipsis.svg';
-import { AddMobileButton,Logo } from '../ui';
+import { AddMobileButton, Logo } from '../ui';
 function Header() {
 	return (
 		<header className='flex items-center border-b border-border bg-background '>
@@ -11,9 +11,21 @@ function Header() {
 						+Add New Task
 					</button>
 					<AddMobileButton />
-					<button className='px-4 py-2 rounded-full hover:bg-secondaryBackground'>
-						<img src={iconVEllipsis} />
-					</button>
+					<div className='dropdown dropdown-end'>
+						<button className='px-4 py-2 rounded-full hover:bg-secondaryBackground'>
+							<img src={iconVEllipsis} />
+						</button>
+						<ul
+							tabIndex={0}
+							className=' text-base  flex flex-col  w-[200px] menu dropdown-content z-[1]  shadow bg-base-100 rounded-box  mt-4 px-8 py-6'>
+							<li>
+								<a className='p-4'>Edit Board</a>
+							</li>
+							<li>
+								<a className='p-4 text-red-500'>Delete Board</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</header>
