@@ -10,7 +10,7 @@ export default function BoardButton({
 }: BoardButtonProps) {
 	return (
 		<button
-			className={`flex items-center w-[90%] py-5 space-x-4 text-2xl font-bold  rounded-r-full pl-14  ${
+			className={`flex items-center w-[90%] py-5 space-x-4 text-base font-semibold  rounded-r-full pl-14  ${
 				active ? 'text-white bg-brand' : 'text-gray'
 			}`}>
 			<BoardIcon color={`${active ? 'white' : 'gray'}`} />

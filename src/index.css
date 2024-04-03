@@ -12,26 +12,41 @@
 html {
 	font-size: 62.5%;
 }
-
+body {
+	overflow: hidden;
+}
 .dark {
-  --brand:99, 95, 199;
+	--brand: 99, 95, 199;
 	--background: 43, 44, 55;
 	--secondaryBackground: 32, 33, 44;
 	--title: 255, 255, 255;
 	--subTitle: 255, 255, 255;
-  --scroll:62, 63, 78;
-	--border:62, 63, 78;
-	--gray:130, 143, 163;
-
-
+	--scroll: 62, 63, 78;
+	--border: 62, 63, 78;
+	--gray: 130, 143, 163;
 }
-.light{
-  --brand:99, 95, 199;
---background:255, 255, 255;
---secondaryBackground:244, 247, 253;
---title:0, 0, 0;
---subTitle:130, 143, 163;
---scroll:130, 143, 163;
-	--gray:130, 143, 163;
+.light {
+	--brand: 99, 95, 199;
+	--background: 255, 255, 255;
+	--secondaryBackground: 244, 247, 253;
+	--title: 0, 0, 0;
+	--subTitle: 130, 143, 163;
+	--scroll: 130, 143, 163;
+	--gray: 130, 143, 163;
+}
 
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	background-color: rgb(43, 44, 55);
+}
+::-webkit-scrollbar-track {
+	background: rgb(43, 44, 55);
+}
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: rgb(99, 95, 199);
 }

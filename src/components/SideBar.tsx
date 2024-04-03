@@ -9,10 +9,10 @@ export default function SideBar() {
 	const [checked, setIsChecked] = useState(false);
 	return (
 		<div
-			className='fixed bg-background min-w-[300px]
-      left-0  flex flex-col h-[calc(100vh-96px)] pt-6 pb-14 justify-between'>
+			className='hidden md:flex fixed flex-col justify-between bg-background  min-w-[300px] z-10  border-r border-border
+          h-[calc(100vh-96px)] pt-6 pb-14  left-0 text-gray'>
 			<div>
-				<p className='text-[#828fa3] ml-12  text-[14px] font-bold tracking-widest border-border border-r mb-8'>
+				<p className='mb-8 ml-12 text-xs font-bold tracking-widest border-r border-border'>
 					ALL BOARDS (5)
 				</p>
 				<div className='flex flex-col space-y-2 '>
@@ -24,7 +24,7 @@ export default function SideBar() {
 					<BoardButton>Marketing Plan</BoardButton>
 					<BoardButton>Roadmap</BoardButton>
 					<BoardButton>Projects Charts</BoardButton>
-					<button className='flex items-center w-[90%] py-6 space-x-4 text-2xl font-bold text-brand  pl-14 hover:opacity-65 transition-all duration-300'>
+					<button className='flex items-center w-[90%] py-6 space-x-4 text-base font-bold text-brand  pl-14 hover:opacity-65 transition-all duration-300'>
 						<BoardIcon color='#635fc7' />
 						<p>+ Create New Board</p>
 					</button>{' '}
@@ -45,7 +45,7 @@ export default function SideBar() {
 					</div>
 					<div className='flex items-center px-8 py-4 space-x-6'>
 						<img src={hideSidebar} />
-						<p className='text-2xl font-bold'>Hide Sidebar</p>
+						<p className='text-base font-bold'>Hide Sidebar</p>
 					</div>
 				</div>
 			</div>
