@@ -1,25 +1,21 @@
-import BoardIcon from '../assets/icon-board';
-import BoardButton from './BoardButton';
-import MoonIcon from '../assets/icon-dark-theme.svg';
-import SunIcon from '../assets/icon-light-theme.svg';
-import eyeIcon from '../assets/icon-show-sidebar.svg';
-import hideSidebar from '../assets/icon-hide-sidebar.svg';
+import BoardIcon from '../../assets/icon-board';
+import BoardButton from '../../ui/BoardButton';
+import MoonIcon from '../../assets/icon-dark-theme.svg';
+import SunIcon from '../../assets/icon-light-theme.svg';
+import eyeIcon from '../../assets/icon-show-sidebar.svg';
+import hideSidebar from '../../assets/icon-hide-sidebar.svg';
 import { useState } from 'react';
 export default function SideBar() {
 	const [checked, setIsChecked] = useState(false);
 	return (
 		<div
-			className='hidden md:flex fixed flex-col justify-between bg-background  min-w-[300px] z-10  border-r border-border
+			className='overflow-y-auto hidden md:flex fixed flex-col justify-between bg-background  min-w-[300px] z-10  border-r border-border
           h-[calc(100vh-96px)] pt-6 pb-14  left-0 text-gray'>
 			<div>
 				<p className='mb-8 ml-12 text-xs font-bold tracking-widest border-r border-border'>
 					ALL BOARDS (5)
 				</p>
 				<div className='flex flex-col space-y-2 '>
-					{/* <button className='flex items-center w-[90%] py-6 space-x-4 text-2xl font-semibold text-white rounded-r-full pl-14 bg-brand'>
-						<BoardIcon color='white' />
-						<p>Platform Launch</p>
-					</button> */}
 					<BoardButton active={true}>Platform Launch</BoardButton>
 					<BoardButton>Marketing Plan</BoardButton>
 					<BoardButton>Roadmap</BoardButton>

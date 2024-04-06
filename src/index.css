@@ -12,22 +12,15 @@
 html {
 	font-size: 62.5%;
 }
-body {
-	overflow: hidden;
-	--brand: 99, 95, 199;
-	--background: 43, 44, 55;
-	--secondaryBackground: 32, 33, 44;
-	--text: 255, 255, 255;
-	--subTitle: 255, 255, 255;
-	--scroll: 62, 63, 78;
-	--border: 62, 63, 78;
-	--gray: 130, 143, 163;
+.modal-custom-container{
+	@apply max-w-none  w-[80%] sm:w-[480px] bg-background text-text p-12  
 }
+
 .dark {
 	--brand: 99, 95, 199;
 	--background: 43, 44, 55;
 	--secondaryBackground: 32, 33, 44;
-	--title: 255, 255, 255;
+	--text: 255, 255, 255;
 	--subTitle: 255, 255, 255;
 	--scroll: 62, 63, 78;
 	--border: 62, 63, 78;
@@ -42,10 +35,6 @@ body {
 	--scroll: 130, 143, 163;
 	--gray: 130, 143, 163;
 }
-/* .modal-box {
-	max-width: none;
-	width: 480px;
-} */
 
 ::-webkit-scrollbar {
 	width: 6px;

@@ -1,6 +1,6 @@
-import Card from './Card';
+import Card from '../Card';
 
-export default function BoardStack() {
+export default function Column() {
 	//outline-gray outline-2 outline-dashed for empty stack
 	return (
 		<div className='w-[280px]   flex-shrink-0 flex flex-col space-y-10     '>
@@ -8,7 +8,7 @@ export default function BoardStack() {
 				<div className='bg-blue-400 rounded-full w-7 h-7'></div>
 				<p className='text-xs font-semibold text-gray'>Todo (7)</p>
 			</div>
-			<div className='flex flex-col h-screen space-y-10 text-2xl rounded-md text-title '>
+			<div className='flex flex-col h-screen space-y-10 text-2xl rounded-md text-text '>
 				<Card />
 				<Card />
 				<Card />

@@ -1,3 +1,3 @@
 import Logo from './Logo';
-import AddMobileButton from './AddMobileButton';
-export { Logo, AddMobileButton };
+import AddTaskMobileButton from './AddTaskMobileButton';
+export { Logo, AddTaskMobileButton };
