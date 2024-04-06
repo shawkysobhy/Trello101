@@ -2,7 +2,6 @@ import BoardIcon from '../../assets/icon-board';
 import BoardButton from '../../ui/BoardButton';
 import MoonIcon from '../../assets/icon-dark-theme.svg';
 import SunIcon from '../../assets/icon-light-theme.svg';
-import eyeIcon from '../../assets/icon-show-sidebar.svg';
 import hideSidebar from '../../assets/icon-hide-sidebar.svg';
 import { useState } from 'react';
 export default function SideBar() {

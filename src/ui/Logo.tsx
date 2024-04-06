@@ -1,4 +1,3 @@
-import logoDark from '../assets/logo-dark.svg';
 import logoMobile from '../assets/logo-mobile.svg';
 import logoLight from '../assets/logo-light.svg';
 
