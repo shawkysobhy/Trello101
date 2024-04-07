@@ -2,16 +2,13 @@ import { useFormContext } from 'react-hook-form';
 type TextInputProps = {
 	name: string;
 	type?: string;
-	validationRules?: {};
 };
 
 export default function TextInput({
 	name,
-	validationRules,
 	type = 'text',
 }: TextInputProps) {
 	const x = useFormContext();
-	console.log(validationRules)
 	return (
 		<input
 			{...x?.register(name)}
