@@ -6,7 +6,7 @@ type BoardButtonProps = {
 	id:string;
 	onClick?: () => void;
 };
-export default function AddBoardButton({
+export default function BoardButtton({
 	id,
 	children,
 	active,

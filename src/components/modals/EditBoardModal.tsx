@@ -1,6 +1,5 @@
 import { createPortal } from 'react-dom';
-import TextInput from '../../ui/TextInput';
-import ModalBtton from '../../ui/ModalBtton';
+import {ModalButton} from '../../ui';
 
 export default function EditBoardModal() {
 	return createPortal(
@@ -21,8 +20,8 @@ export default function EditBoardModal() {
 						{/* <TextInput /> */}
 					</label>
 					<div className='flex flex-col space-y-5 font-bold text-[14px] '>
-						<ModalBtton color='secondary'> + Add New Column</ModalBtton>
-						<ModalBtton color='primary'>Save Chagnes</ModalBtton>
+						<ModalButton color='secondary'> + Add New Column</ModalButton>
+						<ModalButton color='primary'>Save Chagnes</ModalButton>
 					</div>
 				</div>
 			</div>

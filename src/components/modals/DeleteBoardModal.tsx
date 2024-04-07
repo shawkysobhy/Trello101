@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import ModalBtton from '../../ui/ModalBtton';
+import {ModalButton} from '../../ui';
 
 export default function DeleteBoardModal() {
 	return createPortal(
@@ -16,14 +16,14 @@ export default function DeleteBoardModal() {
 					<div className='modal-action'>
 						<form method='dialog'>
 							<div className='flex flex-row space-x-4 text-base font-bold '>
-								<ModalBtton
+								<ModalButton
 									color='primary'
 									onClick={() => {
 										console.log('delete');
 									}}>
 									Delete
-								</ModalBtton>
-								<ModalBtton color='secondary'>Cancel</ModalBtton>
+								</ModalButton>
+								<ModalButton color='secondary'>Cancel</ModalButton>
 							</div>{' '}
 						</form>
 					</div>

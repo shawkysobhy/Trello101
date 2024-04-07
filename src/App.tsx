@@ -1,14 +1,15 @@
-import Board from './components/board/Board';
-import Header from './components/Header';
-import SideBar from './components/sidebar/SideBar';
-import EditBoardModal from './components/modals/EditBoardModal';
-import CreateBoardModal from './components/modals/CreateBoardModal';
-import DeleteBoardModal from './components/modals/DeleteBoardModal';
-import NavigateBoardModal from './components/modals/NavigateBoardModal';
-import Boards from './components/board/Boards';
-import { useState } from 'react';
-import { RootState } from './state/store';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import {
+	EditBoardModal,
+	CreateBoardModal,
+	DeleteBoardModal,
+	NavigateBoardModal,
+} from './components/modals';
+import SideBar from './components/sidebar/SideBar';
+import Header from './components/Header';
+import Boards from './components/board/Boards';
+import { RootState } from './state/store';
 function App() {
 	const boards = useSelector((state: RootState) => state.boards.boards);
 	const [activeBoardId, setActive] = useState(boards[0]?.id || '');
@@ -25,8 +26,6 @@ function App() {
 				/>
 				<Boards activeBoardId={activeBoardId} />
 			</main>
-			{/* You can open the modal using document.getElementById('ID').showModal() method */}
-
 			<CreateBoardModal />
 			<EditBoardModal />
 			<DeleteBoardModal />

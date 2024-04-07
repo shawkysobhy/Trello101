@@ -1,16 +1,19 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../state/store';
+import {BoardButton} from '../../ui';
 import BoardIcon from '../../assets/icon-board';
-import BoardButton from '../../ui/BoardButton';
 import MoonIcon from '../../assets/icon-dark-theme.svg';
 import SunIcon from '../../assets/icon-light-theme.svg';
 import hideSidebar from '../../assets/icon-hide-sidebar.svg';
-import { useState } from 'react';
-import { RootState } from '../../state/store';
-import { useSelector } from 'react-redux';
 type activeBoardProps = {
 	activeBoardId: string;
 	handleActiveBoard: (id: string) => void;
 };
-export default function SideBar({ activeBoardId, handleActiveBoard }: activeBoardProps) {
+export default function SideBar({
+	activeBoardId,
+	handleActiveBoard,
+}: activeBoardProps) {
 	const boards = useSelector((state: RootState) => state.boards.boards);
 	const [checked, setIsChecked] = useState(false);
 	return (

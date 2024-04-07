@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import BoardButton from '../../ui/BoardButton'
+// import {BoardButton} from '../../ui'
 import BoardIcon from '../../assets/icon-board';
 export default function NavigateBoardModal() {
 	return createPortal(
@@ -10,10 +10,10 @@ export default function NavigateBoardModal() {
 						ALL BOARDS (5)
 					</p>
 					<div className='flex flex-col space-y-2 '>
-						<BoardButton active={true}>Platform Launch</BoardButton>
+						{/* <BoardButton active={''}>Platform Launch</BoardButton>
 						<BoardButton>Marketing Plan</BoardButton>
 						<BoardButton>Roadmap</BoardButton>
-						<BoardButton>Projects Charts</BoardButton>
+						<BoardButton>Projects Charts</BoardButton> */}
 						<button
 							onClick={() => {
 								if (document) {

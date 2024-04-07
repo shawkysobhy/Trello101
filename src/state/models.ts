@@ -3,7 +3,7 @@ export interface SubTask{
   isChecked:boolean;
 }
 export interface Task {
-  id:number;
+  id:string;
 	title: string;
 	description: string;
 	status: string;

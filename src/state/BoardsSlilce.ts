@@ -1,87 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { boardsV1 } from '../mock/data';
 import { Board } from './models';
 export interface BoardsState {
 	boards: Board[];
 }
 const initialState: BoardsState = {
-	boards: [
-		{
-			id: '19',
-			name: 'Board 1',
-			columns: [
-				{
-					id: '1',
-					title: 'Column 1',
-					tasks: [
-						{
-							id: 1,
-							title: 'Task 1',
-							description: 'Description 1',
-							status: 'To Do',
-							subtasks: [{ title: 'Subtask 1', isChecked: false }],
-						},
-					],
-				},
-			],
-		},
-		{
-			id: '10',
-			name: 'Board 2',
-			columns: [
-				{
-					id: '1',
-					title: 'Column 1',
-					tasks: [
-						{
-							id: 1,
-							title: 'Task 1',
-							description: 'Description 1',
-							status: 'To Do',
-							subtasks: [{ title: 'Subtask 1', isChecked: false }],
-						},
-					],
-				},
-			],
-		},
-		{
-			id: '11',
-			name: 'Board 3',
-			columns: [
-				{
-					id: '1',
-					title: 'Column 1',
-					tasks: [
-						{
-							id: 4,
-							title: 'Task 1',
-							description: 'Description 1',
-							status: 'To Do',
-							subtasks: [{ title: 'Subtask 1', isChecked: false }],
-						},
-					],
-				},
-			],
-		},
-		{
-			id: '12',
-			name: 'Board 1',
-			columns: [
-				{
-					id: '1',
-					title: 'Column 1',
-					tasks: [
-						{
-							id: 1,
-							title: 'Task 1',
-							description: 'Description 1',
-							status: 'To Do',
-							subtasks: [{ title: 'Subtask 1', isChecked: false }],
-						},
-					],
-				},
-			],
-		},
-	],
+	boards: boardsV1
 };
 
 const boardsSlice = createSlice({

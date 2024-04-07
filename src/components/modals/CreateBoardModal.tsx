@@ -1,6 +1,5 @@
 import { createPortal } from 'react-dom';
-import TextInput from '../../ui/TextInput';
-import ModalBtton from '../../ui/ModalBtton';
+import { TextInput, ModalButton } from '../../ui';
 import { useDispatch } from 'react-redux';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { useFieldArray } from 'react-hook-form';
@@ -34,17 +33,19 @@ export default function CreateBoardModal() {
 	});
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
 		console.log(data);
-	const columns = (data.columnNumbers?.map((column) => {
-		return {
-			id: uuidv4(),
-			title: column.column,
-		};
-	}) || []) as Column[];
+		const columns = (data.columnNumbers?.map((column) => {
+			return {
+				id: uuidv4(),
+				title: column.column,
+				tasks:[]
+			};
+		}) || []) as Column[];
 
 		const board: Board = {
 			id: uuidv4(),
 			name: data.name,
 			columns: columns,
+			
 		};
 
 		dispatch(addBoard(board));
@@ -100,16 +101,16 @@ export default function CreateBoardModal() {
 								);
 							})}
 							<div className='flex flex-col space-y-4 font-bold text-[14px] '>
-								<ModalBtton
+								<ModalButton
 									color='primary'
 									type='button'
 									onClick={() => append({ column: '' })}>
 									{' '}
 									Add New Column
-								</ModalBtton>
-								<ModalBtton color='secondary' type='submit'>
+								</ModalButton>
+								<ModalButton color='secondary' type='submit'>
 									Save Chagnes
-								</ModalBtton>
+								</ModalButton>
 							</div>
 						</div>
 					</form>

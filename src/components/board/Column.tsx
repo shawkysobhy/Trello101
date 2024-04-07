@@ -9,10 +9,15 @@ export default function Column({ column }: { column: ColumnProp }) {
 				<div className='bg-blue-400 rounded-full w-7 h-7'></div>
 				<p className='text-xs font-semibold text-gray'>{column.title} (7)</p>
 			</div>
-			<div className='flex flex-col h-screen space-y-10 text-2xl rounded-md text-text '>
-				<TaskCard />
-				<TaskCard />
-				<TaskCard />
+			<div
+				className={`flex flex-col h-screen space-y-10 text-2xl rounded-md text-text ${
+					column.tasks?.length == 0
+						? 'outline-gray outline-2 outline-dashed for empty stack'
+						: ''
+				}`}>
+				{column.tasks?.map((task, index) => {
+					return <TaskCard key={index} task={task} />;
+				})}
 			</div>
 		</div>
 	);

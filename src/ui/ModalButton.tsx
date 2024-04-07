@@ -1,6 +1,6 @@
 type Color = 'primary' | 'secondary';
 
-export default function ModalBtton({
+export default function ModalButton({
 	color,
 	children,
 	onClick,
