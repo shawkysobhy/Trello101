@@ -25,5 +25,5 @@ const boardsSlice = createSlice({
 });
 
 export default boardsSlice.reducer;
-export const { addBoard, deleteBoard /* other action creators */ } =
+export const { addBoard, deleteBoard } =
 	boardsSlice.actions;
