@@ -12,13 +12,13 @@ export default function EditBoardModal() {
 						<div className='label'>
 							<span className='text-xs font-bold text-text '>Name</span>
 						</div>
-						<TextInput />
+						{/* <TextInput /> */}
 					</label>
 					<label className='flex flex-col w-full space-y-2 max-w-none form-control '>
 						<div className='label'>
 							<span className='text-xs font-bold text-text'>Columns</span>
 						</div>
-						<TextInput />
+						{/* <TextInput /> */}
 					</label>
 					<div className='flex flex-col space-y-5 font-bold text-[14px] '>
 						<ModalBtton color='secondary'> + Add New Column</ModalBtton>

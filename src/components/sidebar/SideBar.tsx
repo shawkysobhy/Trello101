@@ -5,10 +5,13 @@ import SunIcon from '../../assets/icon-light-theme.svg';
 import hideSidebar from '../../assets/icon-hide-sidebar.svg';
 import { useState } from 'react';
 import { RootState } from '../../state/store';
-import { useSelector} from 'react-redux';
-export default function SideBar() {
-	const boards=useSelector((state:RootState)=>state.boards.boards)
-	console.log(boards)
+import { useSelector } from 'react-redux';
+type activeBoardProps = {
+	activeBoardId: string;
+	handleActiveBoard: (id: string) => void;
+};
+export default function SideBar({ activeBoardId, handleActiveBoard }: activeBoardProps) {
+	const boards = useSelector((state: RootState) => state.boards.boards);
 	const [checked, setIsChecked] = useState(false);
 	return (
 		<div
@@ -19,11 +22,15 @@ export default function SideBar() {
 					ALL BOARDS (5)
 				</p>
 				<div className='flex flex-col space-y-2 '>
-					<BoardButton active={true}>Platform Launch</BoardButton>
-					<BoardButton>Marketing Plan</BoardButton>
-					<BoardButton>Roadmap</BoardButton>
-					<BoardButton>Projects Charts</BoardButton>
-					{boards?.map(board=><BoardButton key={board.id}>{board.name}</BoardButton>)}
+					{boards?.map((board) => (
+						<BoardButton
+							key={board.id}
+							id={board.id}
+							onClick={() => handleActiveBoard(board.id)}
+							active={activeBoardId}>
+							{board.name}
+						</BoardButton>
+					))}
 					<button
 						onClick={() => {
 							if (document) {

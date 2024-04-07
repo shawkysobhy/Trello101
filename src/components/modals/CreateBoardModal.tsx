@@ -1,40 +1,60 @@
 import { createPortal } from 'react-dom';
 import TextInput from '../../ui/TextInput';
 import ModalBtton from '../../ui/ModalBtton';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { useFieldArray } from 'react-hook-form';
 import FormRow from '../../ui/FormRow';
-// import { useState } from 'react';
-import CrossIcon from '../../assets/icon-cross.svg'
+import CrossIcon from '../../assets/icon-cross.svg';
+import { addBoard } from '../../state/BoardsSlilce';
+import { Board } from '../../state/models';
+import { v4 as uuidv4 } from 'uuid';
+import { Column } from '../../state/models';
 export type FormFields = {
 	name: string;
 	columnNumbers?: { column: string }[];
 };
 export default function CreateBoardModal() {
-	// const {
-	// 	getValues,
-	// 	reset,
-	// } = useForm<FormFields>();
 	const methods = useForm<FormFields>({
 		defaultValues: {
 			name: '',
-			columnNumbers:[{column:''}]
+			columnNumbers: [{ column: '' }],
 		},
 	});
 	const {
 		handleSubmit,
 		control,
+		reset,
 		formState: { errors },
 	} = methods;
-	// const dispatch = useDispatch();
-	// const createBoardHandler = () => {};
-	const { fields, append,remove } = useFieldArray({
+	const dispatch = useDispatch();
+	const { fields, append, remove } = useFieldArray({
 		name: 'columnNumbers',
 		control,
 	});
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
 		console.log(data);
+	const columns = (data.columnNumbers?.map((column) => {
+		return {
+			id: uuidv4(),
+			title: column.column,
+		};
+	}) || []) as Column[];
+
+		const board: Board = {
+			id: uuidv4(),
+			name: data.name,
+			columns: columns,
+		};
+
+		dispatch(addBoard(board));
+
+		reset();
+		if (document) {
+			(
+				document.getElementById('create_board_modal') as HTMLFormElement
+			).close();
+		}
 	};
 
 	return createPortal(
@@ -49,7 +69,10 @@ export default function CreateBoardModal() {
 									<span className='text-xs font-bold text-text '>Name</span>
 								</div>
 								<FormRow error={errors.name}>
-									<TextInput name='name'  />
+									<TextInput
+										name='name'
+										validationRuels={{ required: 'board name required' }}
+									/>
 								</FormRow>
 							</label>
 							<label className='flex flex-col w-full space-y-2 max-w-none form-control '>
@@ -60,13 +83,16 @@ export default function CreateBoardModal() {
 							{fields?.map((field, index) => {
 								return (
 									<div
-										className='flex-row items-center justify-between space-x-4 form-control'
+										className='flex-row items-center space-x-4 form-control'
 										key={field.id}>
-										<TextInput
-											name={`columnNumbers.${index}.column` as const}
-										/>
-										{fields.length>1&& (
-											<button onClick={()=>remove(index)}>
+										<FormRow error={errors.columnNumbers?.[index]?.column}>
+											<TextInput
+												validationRuels={{ required: 'column name required' }}
+												name={`columnNumbers.${index}.column` as const}
+											/>
+										</FormRow>
+										{fields.length > 1 && (
+											<button onClick={() => remove(index)}>
 												<img src={CrossIcon} />
 											</button>
 										)}

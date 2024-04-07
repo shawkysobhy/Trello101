@@ -11,13 +11,13 @@ export interface Task {
 }
 
 export interface Column{
-  id:number;
+  id:string;
   title:string;
   color?:string;
-  tasks:Task[]
+  tasks?:Task[]
 }
 export interface Board {
 	name: string;
   id:string;
-	columns: Column[];
+	columns: Column[]|[];
 }
