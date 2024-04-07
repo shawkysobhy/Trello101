@@ -4,10 +4,12 @@ export default function ModalBtton({
 	color,
 	children,
 	onClick,
+	type,
 }: {
 	color: Color;
 	children: React.ReactNode;
 	onClick?: () => void;
+	type?: 'button' | 'submit' | 'reset';
 }) {
 	const colors = {
 		primary: 'bg-brand text-text',
@@ -17,6 +19,7 @@ export default function ModalBtton({
 	return (
 		<button
 			onClick={onClick}
+			type={type}
 			className={`px-4 py-3 rounded-full font-bold text-[13px] ${colors[color]}`}>
 			{children}
 		</button>

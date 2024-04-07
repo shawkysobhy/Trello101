@@ -4,7 +4,11 @@ import MoonIcon from '../../assets/icon-dark-theme.svg';
 import SunIcon from '../../assets/icon-light-theme.svg';
 import hideSidebar from '../../assets/icon-hide-sidebar.svg';
 import { useState } from 'react';
+import { RootState } from '../../state/store';
+import { useSelector} from 'react-redux';
 export default function SideBar() {
+	const boards=useSelector((state:RootState)=>state.boards.boards)
+	console.log(boards)
 	const [checked, setIsChecked] = useState(false);
 	return (
 		<div
@@ -19,6 +23,7 @@ export default function SideBar() {
 					<BoardButton>Marketing Plan</BoardButton>
 					<BoardButton>Roadmap</BoardButton>
 					<BoardButton>Projects Charts</BoardButton>
+					{boards?.map(board=><BoardButton key={board.id}>{board.name}</BoardButton>)}
 					<button
 						onClick={() => {
 							if (document) {

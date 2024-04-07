@@ -15,7 +15,9 @@ html {
 .modal-custom-container{
 	@apply max-w-none  w-[80%] sm:w-[480px] bg-background text-text p-12  
 }
-
+.regular-input{
+	@apply w-full  px-4 py-3 border border-[#635fc7] rounded-md text-base  bg-[#2b2c37];
+}
 .dark {
 	--brand: 99, 95, 199;
 	--background: 43, 44, 55;
