@@ -15,7 +15,7 @@ export default function DeleteBoardModal() {
 	const dispatch = useDispatch();
 	const deleteBoardHandler = () => {
 		dispatch(deleteBoard(activeBoardId));
-		// dispatch(resetState());
+		dispatch(resetState());
 	};
 	const boardName = ` ${boardWithId?.name} `;
 	return createPortal(

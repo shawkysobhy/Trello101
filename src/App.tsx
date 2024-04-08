@@ -12,9 +12,7 @@ function App() {
 		<div className='flex flex-col h-screen dark bg-secondaryBackground'>
 			<Header />
 			<main className='relative flex w-full h-full overflow-auto'>
-				<SideBar
-					
-				/>
+				<SideBar />
 				<Boards />
 			</main>
 			<CreateBoardModal />

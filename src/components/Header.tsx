@@ -1,22 +1,26 @@
 import iconVEllipsis from '../assets/icon-vertical-ellipsis.svg';
-import ChevronDown from '../assets/icon-chevron-down.svg'
+import ChevronDown from '../assets/icon-chevron-down.svg';
 import { AddTaskMobileButton, Logo } from '../ui';
+import useBoard from './hooks/useBoard';
+import {
+	deleteModalBoardId,
+	editModalBoardId,
+	modalOpenHandler,
+	navigateModalBoardId,
+} from './utils/utils';
 function Header() {
+	const { currentActiveBoard } = useBoard();
 	return (
 		<header className='flex items-center border-b border-border bg-background '>
 			<Logo />
 			<div className='flex items-center justify-between flex-grow px-6 md:px-12'>
 				<div className='flex items-center space-x-4'>
-					<h1 className='text-4xl font-bold text-text'>Platform Launch</h1>
+					<h1 className='text-4xl font-bold text-text'>
+						{currentActiveBoard.name}
+					</h1>
 					<button
-						className='flex items-center justify-between  md:hidden'
-						onClick={() => {
-							if (document) {
-								(
-									document.getElementById('navigate_board_modal') as HTMLFormElement
-								).showModal();
-							}
-						}}>
+						className='flex items-center justify-between md:hidden'
+						onClick={() => modalOpenHandler(navigateModalBoardId)}>
 						<img src={ChevronDown} />
 					</button>
 				</div>{' '}
@@ -35,29 +39,13 @@ function Header() {
 							<li>
 								<button
 									className='p-4'
-									onClick={() => {
-										if (document) {
-											(
-												document.getElementById(
-													'edit_board_modal'
-												) as HTMLFormElement
-											).showModal();
-										}
-									}}>
+									onClick={() => modalOpenHandler(editModalBoardId)}>
 									Edit Board
 								</button>
 							</li>
 							<li>
 								<button
-									onClick={() => {
-										if (document) {
-											(
-												document.getElementById(
-													'delete_board_modal'
-												) as HTMLFormElement
-											).showModal();
-										}
-									}}
+									onClick={() => modalOpenHandler(deleteModalBoardId)}
 									className='p-4 text-red-500'>
 									Delete Board
 								</button>
