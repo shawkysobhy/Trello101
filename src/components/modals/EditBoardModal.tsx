@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
 import { useEffect } from 'react';
 import useBoard from '../hooks/useBoard';
+import Column from '../board/Column';
 
 export type FormFields = {
 	name: string;
@@ -22,13 +23,7 @@ export default function EditBoardModal() {
 		(state: RootState) => state.activeBoardId.activeBoardId
 	);
 	const { boardWithId } = useBoard(activeBoardId);
-	const columns = boardWithId.columns.map((column) => {
-		return {
-			id: column.id,
-			column: column.column,
-			tasks: column.tasks,
-		};
-	});
+	const columns = boardWithId.columns;
 
 	const methods = useForm({
 		defaultValues: {
@@ -52,6 +47,9 @@ export default function EditBoardModal() {
 		control,
 	});
 	const onSubmit: SubmitHandler<any> = (data) => {
+		console.log(columns);
+		console.log(data.columnNumbers);
+
 		dispatch(
 			editBoard({
 				boardId: activeBoardId,
@@ -70,7 +68,6 @@ export default function EditBoardModal() {
 			<div className='modal-box modal-custom-container'>
 				<h3 className='mb-8 text-base font-semibold'>Edit Board</h3>
 				<FormProvider {...methods}>
-					{/* //onSubmit={handleSubmit(onSubmit)} */}
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className='flex flex-col space-y-6'>
 							<label className='modal-label '>

@@ -34,7 +34,7 @@ export default function CreateBoardModal() {
 		control,
 	});
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
-		const columns = (data.columnNumbers?.map((column) => {
+		const columns: Column[] = (data.columnNumbers?.map((column) => {
 			return {
 				id: uuidv4(),
 				column: column.column,

@@ -1,4 +1,4 @@
-import { Board } from "../state/models";
+import { Board } from '../state/models';
 export const boardsV1: Board[] = [
 	{
 		id: '0',
@@ -361,10 +361,7 @@ export const boardsV1: Board[] = [
 						description: '',
 						status: 'Todo',
 						subtasks: [
-							{
-								title: 'Draft out HN post',
-								isChecked: false,
-							},
+							{  title: 'Draft out HN post', isChecked: false },
 							{
 								title: 'Get feedback and refine',
 								isChecked: false,

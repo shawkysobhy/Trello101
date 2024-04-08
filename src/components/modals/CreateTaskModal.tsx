@@ -5,10 +5,8 @@ import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { useFieldArray } from 'react-hook-form';
 import FormRow from '../../ui/FormRow';
 import CrossIcon from '../../assets/icon-cross.svg';
-import { addBoard, addTask } from '../../state/BoardsSlilce';
-import { Board } from '../../state/models';
+import { addTask } from '../../state/BoardsSlilce';
 import { v4 as uuidv4 } from 'uuid';
-import { setActiveId } from '../../state/ActiveBoardSlice';
 import { createTaskId } from '../utils/utils';
 import { Task, SubTask } from '../../state/models';
 import useBoard from '../hooks/useBoard';
@@ -28,6 +26,7 @@ export default function CreateTaskdModal() {
 	const [selectedStatus, setSelectedStatus] = useState(
 		currentActiveBoard.columns[0].id
 	);
+	console.log(currentActiveBoard.columns[0].id)
 	const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setSelectedStatus(event.target.value);
 	};
@@ -56,7 +55,7 @@ export default function CreateTaskdModal() {
 		const subtasks: SubTask[] =
 			data.subtasks?.map((subtask) => {
 				return {
-					id: uuidv4(),
+					// id: uuidv4(),
 					title: subtask.title,
 					isChecked: false,
 				};
@@ -69,9 +68,7 @@ export default function CreateTaskdModal() {
 			subtasks,
 		};
 
-		dispatch(
-			addTask({ task: task, boardId: boardId, columnId: selectedStatus })
-		);
+		dispatch(addTask({ task: task, boardId: boardId, columnId: columns[0].id }));
 		reset();
 		if (document) {
 			(document.getElementById(createTaskId) as HTMLFormElement).close();
