@@ -5,7 +5,7 @@ import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { useFieldArray } from 'react-hook-form';
 import FormRow from '../../ui/FormRow';
 import CrossIcon from '../../assets/icon-cross.svg';
-import {  editBoard } from '../../state/BoardsSlilce';
+import { editBoard } from '../../state/BoardsSlilce';
 import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
@@ -56,7 +56,7 @@ export default function EditBoardModal() {
 			editBoard({
 				boardId: activeBoardId,
 				columns: data.columnNumbers,
-				name: data.name||boardWithId.name,
+				name: data.name || boardWithId.name,
 			})
 		);
 		reset();
@@ -73,7 +73,7 @@ export default function EditBoardModal() {
 					{/* //onSubmit={handleSubmit(onSubmit)} */}
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className='flex flex-col space-y-6'>
-							<label className='flex flex-col w-full space-y-2 max-w-none form-control '>
+							<label className='modal-label '>
 								<div className='label'>
 									<span className='text-xs font-bold text-text '>Name</span>
 								</div>
@@ -84,7 +84,7 @@ export default function EditBoardModal() {
 									/>
 								</FormRow>
 							</label>
-							<label className='flex flex-col w-full space-y-2 max-w-none form-control '>
+							<label className='modal-label'>
 								<div className='label'>
 									<span className='text-xs font-bold text-text'>Columns</span>
 								</div>

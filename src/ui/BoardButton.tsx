@@ -22,6 +22,7 @@ export default function BoardButtton({
 						document?.getElementById('navigate_board_modal') as HTMLFormElement
 					)?.close();
 				}
+				
 			}}
 			className={`flex items-center w-[90%] py-4 space-x-4 text-base font-bold  rounded-r-full pl-14  ${
 				active == id ? 'text-white bg-brand' : 'text-gray'

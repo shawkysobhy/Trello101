@@ -18,6 +18,9 @@ html {
 .regular-input{
 	@apply w-full  px-4 py-3 border border-[#635fc7] rounded-md text-base  bg-[#2b2c37];
 }
+.modal-label{
+	@apply flex flex-col w-full space-y-2 max-w-none form-control 
+}
 .dark {
 	--brand: 99, 95, 199;
 	--background: 43, 44, 55;

@@ -9,6 +9,8 @@ import { addBoard } from '../../state/BoardsSlilce';
 import { Board } from '../../state/models';
 import { v4 as uuidv4 } from 'uuid';
 import { Column } from '../../state/models';
+import { setActiveId } from '../../state/ActiveBoardSlice';
+import { createModalBoardId } from '../utils/utils';
 export type FormFields = {
 	name: string;
 	columnNumbers?: { column: string }[];
@@ -39,31 +41,28 @@ export default function CreateBoardModal() {
 				tasks: [],
 			};
 		}) || []) as Column[];
-
+		const boardId = uuidv4();
 		const board: Board = {
-			id: uuidv4(),
+			id: boardId,
 			name: data.name,
 			columns: columns,
 		};
 
 		dispatch(addBoard(board));
-
+		dispatch(setActiveId(boardId));
 		reset();
 		if (document) {
-			(
-				document.getElementById('create_board_modal') as HTMLFormElement
-			).close();
+			(document.getElementById(createModalBoardId) as HTMLFormElement).close();
 		}
 	};
-
 	return createPortal(
-		<dialog id='create_board_modal' className=' modal'>
+		<dialog id={createModalBoardId} className=' modal'>
 			<div className='modal-box modal-custom-container'>
 				<h3 className='mb-8 text-base font-semibold'>Add New Board</h3>
 				<FormProvider {...methods}>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className='flex flex-col space-y-6'>
-							<label className='flex flex-col w-full space-y-2 max-w-none form-control '>
+							<label className='modal-label '>
 								<div className='label'>
 									<span className='text-xs font-bold text-text '>Name</span>
 								</div>
@@ -74,7 +73,7 @@ export default function CreateBoardModal() {
 									/>
 								</FormRow>
 							</label>
-							<label className='flex flex-col w-full space-y-2 max-w-none form-control '>
+							<label className='modal-label '>
 								<div className='label'>
 									<span className='text-xs font-bold text-text'>Columns</span>
 								</div>
