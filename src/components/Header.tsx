@@ -6,6 +6,7 @@ import {
 	deleteModalBoardId,
 	editModalBoardId,
 	modalOpenHandler,
+	createTaskId,
 	navigateModalBoardId,
 } from './utils/utils';
 function Header() {
@@ -25,10 +26,15 @@ function Header() {
 					</button>
 				</div>{' '}
 				<div className='flex items-center space-x-4'>
-					<button className='text-[15px]  hidden md:block bg-brand text-text px-7 py-5 rounded-full font-bold'>
+					<button
+						onClick={() => modalOpenHandler(createTaskId)}
+						className='text-[15px]  hidden md:block bg-brand text-text px-7 py-5 rounded-full font-bold'>
 						+Add New Task
 					</button>
-					<AddTaskMobileButton />
+					<AddTaskMobileButton
+						modalOpenHandler={modalOpenHandler}
+						createTaskId={createTaskId}
+					/>
 					<div className='dropdown dropdown-end'>
 						<button className='px-4 py-2 rounded-full hover:bg-secondaryBackground'>
 							<img src={iconVEllipsis} />

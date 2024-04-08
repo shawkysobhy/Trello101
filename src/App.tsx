@@ -7,6 +7,7 @@ import {
 import SideBar from './components/sidebar/SideBar';
 import Header from './components/Header';
 import Boards from './components/board/Boards';
+import CreateTaskdModal from './components/modals/CreateTaskModal';
 function App() {
 	return (
 		<div className='flex flex-col h-screen dark bg-secondaryBackground'>
@@ -19,6 +20,7 @@ function App() {
 			<EditBoardModal />
 			<DeleteBoardModal />
 			<NavigateBoardModal />
+			<CreateTaskdModal/>
 		</div>
 	);
 }

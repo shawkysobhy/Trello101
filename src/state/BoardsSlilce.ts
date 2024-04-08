@@ -1,6 +1,6 @@
-import { PayloadAction, createSlice, current } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { boardsV1 } from '../mock/data';
-import { Board, Column } from './models';
+import { Board, Column, Task } from './models';
 export interface BoardsState {
 	boards: Board[];
 }
@@ -29,49 +29,31 @@ const boardsSlice = createSlice({
 			}>
 		) {
 			const { boardId, name, columns } = action.payload;
-			// const boards = current(state.boards);
-			// const board = boards.find((board) => board.id === boardId);
-			// console.log(board);
-			// if (board) {
-			// 	if (name !== undefined) {
-			// 		board.name = name;
-			// 	}
-			// 	if (columns !== undefined) {
-			// 		board.columns = columns;
-			// 	}
-			// }
-			// const index = state.boards.findIndex((board) => board.id === boardId);
-			// console.log('Index', index);
-			// console.log(current(state.boards));
-			// const x = current(state?.boards).map((board) => {
-			// 	if (board.id === boardId) {
-			// 		return { id: boardId, name: name, columns: columns };
-			// 	} else {
-			// 		return board;
-			// 	}
-			// });
-			// state.boards = x;
 			const index = state.boards.findIndex((board) => board.id === boardId);
-						if (index !== -1) {
-							state.boards[index].name = name ?? state.boards[index].name;
-							state.boards[index].columns =
-								columns ?? state.boards[index].columns;
-						}
-console.log(current(state.boards))
+			if (index !== -1) {
+				state.boards[index].name = name ?? state.boards[index].name;
+				state.boards[index].columns = columns ?? state.boards[index].columns;
+			}
+		},
+		addTask(
+			state,
+			action: PayloadAction<{
+				boardId: string;
+				task: Task;
+				columnId: string;
+			}>
+		) {
+			const { boardId, task, columnId } = action.payload;
+			const boardIndex = state.boards.findIndex((board) => board.id == boardId);
+			const columnIndex = state.boards[boardIndex].columns.findIndex(
+				(column) => column.id === columnId
+			);
+			state.boards[boardIndex].columns[columnIndex].tasks?.push(task);
 		},
 	},
 });
-/**function updateOne(array, obj) {
-  return array.map((item) => {
-    if (obj.id === item.id) {
-    // update whatever you want
-    return {...item, title: obj.title };
-   } else {
-    return item;
-   }
- })
-}
- */
+
 
 export default boardsSlice.reducer;
-export const { addBoard, deleteBoard, editBoard } = boardsSlice.actions;
+export const { addBoard, deleteBoard, editBoard, addTask } =
+	boardsSlice.actions;

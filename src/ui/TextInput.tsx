@@ -12,7 +12,7 @@ export default function TextInput({ name, type = 'text', validationRuels={} }: T
 			{...x?.register(name,validationRuels)}
 			type={type}
 			placeholder='Type here'
-			className='w-full  px-4 py-3 border border-[#635fc7] rounded-md text-base  bg-[#2b2c37]'
+			className='w-full  px-4 py-3 border border-[#635fc7] rounded-md text-sm bg-[#2b2c37]'
 		/>
 	);
 }
