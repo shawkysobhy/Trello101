@@ -32,12 +32,11 @@ export default function CreateBoardModal() {
 		control,
 	});
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
-		console.log(data);
 		const columns = (data.columnNumbers?.map((column) => {
 			return {
 				id: uuidv4(),
-				title: column.column,
-				tasks:[]
+				column: column.column,
+				tasks: [],
 			};
 		}) || []) as Column[];
 
@@ -45,7 +44,6 @@ export default function CreateBoardModal() {
 			id: uuidv4(),
 			name: data.name,
 			columns: columns,
-			
 		};
 
 		dispatch(addBoard(board));

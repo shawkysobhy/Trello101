@@ -2,7 +2,7 @@ import { useState } from 'react';
 import MoonIcon from '../../assets/icon-dark-theme.svg';
 import SunIcon from '../../assets/icon-light-theme.svg';
 import hideSidebar from '../../assets/icon-hide-sidebar.svg';
-import BoardList from './BoardList';
+import BoardList from '../board/BoardList';
 export default function SideBar() {
 	const [checked, setIsChecked] = useState(false);
 	return (
@@ -13,7 +13,7 @@ export default function SideBar() {
 				<p className='mb-8 ml-12 text-xs font-bold tracking-widest border-r border-border'>
 					ALL BOARDS (5)
 				</p>
-				<BoardList/>
+				<BoardList />
 			</div>
 			<div>
 				<div className='ml-12'>

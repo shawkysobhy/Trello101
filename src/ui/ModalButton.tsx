@@ -20,7 +20,7 @@ export default function ModalButton({
 		<button
 			onClick={onClick}
 			type={type}
-			className={`px-4 py-3 rounded-full font-bold text-[13px] ${colors[color]}`}>
+			className={`px-4 py-3 hover:opacity-80 rounded-full font-bold text-[13px] ${colors[color]} `}>
 			{children}
 		</button>
 	);

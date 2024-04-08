@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import BoardList from '../sidebar/BoardList';
+import BoardList from '../board/BoardList';
 export default function NavigateBoardModal() {
 	return createPortal(
 		<dialog id='navigate_board_modal' className='modal'>

@@ -8,6 +8,5 @@ export default function Boards() {
 	);
 
 	const activeBoard = boards.find((board) => board.id === activeBoardId);
-	console.log(activeBoard);
 	return <>{activeBoard ? <Board board={activeBoard} /> : <p>not found</p>}</>;
 }

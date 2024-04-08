@@ -1,23 +1,23 @@
-export interface SubTask{
-  title:string;
-  isChecked:boolean;
+export interface SubTask {
+	title: string;
+	isChecked: boolean;
 }
 export interface Task {
-  id:string;
+	id: string;
 	title: string;
 	description: string;
 	status: string;
 	subtasks: SubTask[];
 }
 
-export interface Column{
-  id:string;
-  title:string;
-  color?:string;
-  tasks?:Task[]
+export interface Column {
+	id: string;
+	column: string;
+	color?: string;
+	tasks?: Task[];
 }
 export interface Board {
 	name: string;
-  id:string;
-	columns: Column[]|[];
+	id: string;
+	columns: Column[];
 }

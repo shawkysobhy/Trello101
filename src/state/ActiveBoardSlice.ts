@@ -3,7 +3,7 @@ interface ActiveState {
 	activeBoardId: string;
 }
 const initialState: ActiveState = {
-	activeBoardId: '1'
+	activeBoardId: '0'
 };
 const ActiveBoardSlice = createSlice({
 	name: 'active',
@@ -12,8 +12,9 @@ const ActiveBoardSlice = createSlice({
 		setActiveId: (state, action: PayloadAction<string>) => {
 			state.activeBoardId = action.payload;
 		},
+		resetState: () => initialState,
 	},
 });
 
 export default ActiveBoardSlice.reducer;
-export const { setActiveId } = ActiveBoardSlice.actions;
+export const { setActiveId,resetState } = ActiveBoardSlice.actions;
