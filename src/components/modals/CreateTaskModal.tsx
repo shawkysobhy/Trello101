@@ -26,8 +26,9 @@ export default function CreateTaskdModal() {
 	const [selectedStatus, setSelectedStatus] = useState(
 		currentActiveBoard.columns[0].id
 	);
-	console.log(currentActiveBoard.columns[0].id)
+	console.log(selectedStatus);
 	const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		console.log(event.target.value)
 		setSelectedStatus(event.target.value);
 	};
 	const columns = currentActiveBoard.columns;
@@ -68,7 +69,9 @@ export default function CreateTaskdModal() {
 			subtasks,
 		};
 
-		dispatch(addTask({ task: task, boardId: boardId, columnId: columns[0].id }));
+		dispatch(
+			addTask({ task: task, boardId: boardId, columnId: selectedStatus })
+		);
 		reset();
 		if (document) {
 			(document.getElementById(createTaskId) as HTMLFormElement).close();

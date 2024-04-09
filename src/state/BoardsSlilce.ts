@@ -62,18 +62,6 @@ const boardsSlice = createSlice({
 					state.boards[boardIndex].columns[columnIndex].tasks?.push(task);
 				console.log('new tasks', newTasks);
 			}
-			// state.boards[boardIndex].columns[columnIndex].tasks = newTasks ??state.boards[boardIndex].columns[columnIndex].tasks;
-
-			// 			const tasks = state.boards[boardIndex].columns[columnIndex]?.tasks;
-			// 			tasks?.push(task);
-			// 			// state.boards[boardIndex].columns[columnIndex]?.tasks = tasks;
-			// 			if (tasks !== undefined) {
-			// 				state.boards[boardIndex].columns[columnIndex].tasks = tasks;
-			// 			}
-			// console.log(state.boards[boardIndex])
-			// 			// state.boards[boardIndex].columns[columnIndex] =
-			// 			// 	tasks ?? state.boards[boardIndex].columns[columnIndex].tasks;
-			// 		},
 		},
 	},
 });

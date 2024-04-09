@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
 import { useEffect } from 'react';
 import useBoard from '../hooks/useBoard';
-import Column from '../board/Column';
 
 export type FormFields = {
 	name: string;
