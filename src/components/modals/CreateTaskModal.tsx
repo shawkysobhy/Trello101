@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { createTaskId } from '../utils/utils';
 import { Task, SubTask } from '../../state/models';
 import useBoard from '../hooks/useBoard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 export type FormFields = {
 	id: string;
 	title: string;
@@ -18,19 +18,18 @@ export type FormFields = {
 	status: string;
 	subtasks?: { title: string }[];
 };
-
 export default function CreateTaskdModal() {
 	const { currentActiveBoard } = useBoard();
-	const boardId = currentActiveBoard.id;
+	// const boardId = currentActiveBoard.id;
 	const dispatch = useDispatch();
 	const [selectedStatus, setSelectedStatus] = useState(
 		currentActiveBoard.columns[0].id
 	);
-	console.log(selectedStatus);
 	const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-		console.log(event.target.value)
+		console.log(event.target.value);
 		setSelectedStatus(event.target.value);
 	};
+	console.log('selectedStatus', selectedStatus);
 	const columns = currentActiveBoard.columns;
 	const methods = useForm<FormFields>({
 		defaultValues: {
@@ -50,8 +49,11 @@ export default function CreateTaskdModal() {
 		name: 'subtasks',
 		control,
 	});
+	useEffect(() => {
+		setSelectedStatus(currentActiveBoard.columns[0].id);
+	}, [currentActiveBoard]);
+
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
-		console.log('data', data);
 		const taskId = uuidv4();
 		const subtasks: SubTask[] =
 			data.subtasks?.map((subtask) => {
@@ -70,7 +72,11 @@ export default function CreateTaskdModal() {
 		};
 
 		dispatch(
-			addTask({ task: task, boardId: boardId, columnId: selectedStatus })
+			addTask({
+				task: task,
+				boardId: currentActiveBoard.id,
+				columnId: selectedStatus,
+			})
 		);
 		reset();
 		if (document) {

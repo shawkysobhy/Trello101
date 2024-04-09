@@ -25,7 +25,7 @@ const boardsSlice = createSlice({
 			action: PayloadAction<{
 				boardId: string;
 				name: string;
-				columns?: Column[];
+				columns?: Column[]       ;
 			}>
 		) {
 			const { boardId, name, columns } = action.payload;
@@ -38,7 +38,7 @@ const boardsSlice = createSlice({
 				) || [];
 			if (index !== -1) {
 				state.boards[index].name = name ?? state.boards[index].name;
-				state.boards[index].columns.push(...newColumns);
+				state.boards[index].columns.push(...newColumns)
 			}
 		},
 		addTask(
@@ -54,13 +54,10 @@ const boardsSlice = createSlice({
 			const columnIndex = state.boards[boardIndex].columns.findIndex(
 				(column) => column.id === columnId
 			);
-			console.log(boardIndex);
-			console.log('columnId', columnId);
-			console.log(current(state.boards[boardIndex].columns));
+			console.log(boardIndex,columnIndex)
 			if (boardIndex !== -1 && columnIndex !== -1) {
-				const newTasks =
+				console.log('redux task',task)
 					state.boards[boardIndex].columns[columnIndex].tasks?.push(task);
-				console.log('new tasks', newTasks);
 			}
 		},
 	},

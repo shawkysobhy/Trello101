@@ -21,12 +21,12 @@ export default function EditBoardModal() {
 	const activeBoardId = useSelector(
 		(state: RootState) => state.activeBoardId.activeBoardId
 	);
-	const { boardWithId } = useBoard(activeBoardId);
-	const columns = boardWithId.columns;
+	const { currentActiveBoard } = useBoard();
+	const columns = currentActiveBoard.columns;
 
 	const methods = useForm({
 		defaultValues: {
-			name: boardWithId.name,
+			name: currentActiveBoard.name,
 			columnNumbers: columns,
 		},
 	});
@@ -37,8 +37,8 @@ export default function EditBoardModal() {
 		formState: { errors },
 	} = methods;
 	useEffect(() => {
-		reset({ name: boardWithId.name, columnNumbers: columns });
-	}, [activeBoardId]);
+		reset({ name: currentActiveBoard.name, columnNumbers: currentActiveBoard.columns });
+	}, [activeBoardId, currentActiveBoard]);
 
 	const dispatch = useDispatch();
 	const { fields, append, remove } = useFieldArray({
@@ -46,14 +46,11 @@ export default function EditBoardModal() {
 		control,
 	});
 	const onSubmit: SubmitHandler<any> = (data) => {
-		console.log(columns);
-		console.log(data.columnNumbers);
-
 		dispatch(
 			editBoard({
 				boardId: activeBoardId,
 				columns: data.columnNumbers,
-				name: data.name || boardWithId.name,
+				name: data.name || currentActiveBoard.name,
 			})
 		);
 		reset();

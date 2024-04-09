@@ -51,6 +51,7 @@ export default function CreateBoardModal() {
 		dispatch(addBoard(board));
 		dispatch(setActiveId(boardId));
 		reset();
+		console.log(columns)
 		if (document) {
 			(document.getElementById(createModalBoardId) as HTMLFormElement).close();
 		}
