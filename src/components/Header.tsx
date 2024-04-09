@@ -16,11 +16,13 @@ function Header() {
 			<Logo />
 			<div className='flex items-center justify-between flex-grow px-6 md:px-12'>
 				<div className='flex items-center space-x-4'>
-					<h1 className='text-4xl font-bold text-text'>
+					<h1
+						className='text-3xl font-bold cursor-pointer md:text-4xl text-text'
+						onClick={() => modalOpenHandler(navigateModalBoardId)}>
 						{currentActiveBoard.name}
 					</h1>
 					<button
-						className='flex items-center justify-between md:hidden'
+						className='flex items-center justify-between px-3 ju md:hidden'
 						onClick={() => modalOpenHandler(navigateModalBoardId)}>
 						<img src={ChevronDown} />
 					</button>

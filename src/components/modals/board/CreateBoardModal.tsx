@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { useFieldArray } from 'react-hook-form';
 import FormRow from '../../../ui/FormRow';
-import CrossIcon from '../../../assets/icon-chevron-down.svg';
+import CrossIcon from '../../../assets/icon-cross.svg';
 import { addBoard } from '../../../state/BoardsSlilce';
 import { Board } from '../../../state/models';
-import { v4 as uuidv4 } from 'uuid';
 import { Column } from '../../../state/models';
 import { setActiveBoardId } from '../../../state/ActiveBoardSlice';
-import { createModalBoardId } from '../../utils/utils';
+import { createModalBoardId, navigateModalBoardId } from '../../utils/utils';
+import useBoard from '../../hooks/useBoard';
 export type FormFields = {
 	name: string;
 	columnNumbers?: { column: string }[];
@@ -33,15 +33,16 @@ export default function CreateBoardModal() {
 		name: 'columnNumbers',
 		control,
 	});
+	const { boards } = useBoard();
+	const boardId = (boards.length).toString();
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
-		const columns: Column[] = (data.columnNumbers?.map((column) => {
+		const columns: Column[] = (data.columnNumbers?.map((column, index) => {
 			return {
-				id: uuidv4(),
+				id: `${index}`,
 				column: column.column,
 				tasks: [],
 			};
 		}) || []) as Column[];
-		const boardId = uuidv4();
 		const board: Board = {
 			id: boardId,
 			name: data.name,
@@ -52,7 +53,9 @@ export default function CreateBoardModal() {
 		reset();
 		if (document) {
 			(document.getElementById(createModalBoardId) as HTMLFormElement).close();
+			(document.getElementById(navigateModalBoardId) as HTMLFormElement).close();
 		}
+		
 	};
 	return createPortal(
 		<dialog id={createModalBoardId} className=' modal'>
@@ -98,13 +101,13 @@ export default function CreateBoardModal() {
 							})}
 							<div className='flex flex-col space-y-4 font-bold text-[14px] '>
 								<ModalButton
-									color='primary'
+									color='secondary'
 									type='button'
 									onClick={() => append({ column: '' })}>
 									{' '}
 									Add New Column
 								</ModalButton>
-								<ModalButton color='secondary' type='submit'>
+								<ModalButton color='primary' type='submit'>
 									Save Chagnes
 								</ModalButton>
 							</div>

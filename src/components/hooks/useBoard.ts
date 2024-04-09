@@ -10,6 +10,7 @@ const useBoard = (id?: string) => {
 	const currentActiveBoard = boards.filter(
 		(board) => board.id == activeBoardId
 	)[0];
+	
 	return { boards, boardWithId, currentActiveBoard };
 };
 

@@ -49,9 +49,7 @@ export default function CreateTaskdModal() {
 	useEffect(() => {
 		setSelectedStatus(currentActiveBoard.columns[0].id);
 	}, [currentActiveBoard]);
-
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
-		const taskId = uuidv4();
 		const subtasks: SubTask[] =
 			data.subtasks?.map((subtask) => {
 				return {
@@ -60,7 +58,7 @@ export default function CreateTaskdModal() {
 				};
 			}) || [];
 		const task: Task = {
-			id: taskId,
+			id: uuidv4(),
 			columnId: selectedStatus,
 			title: data.title,
 			description: data.description,
@@ -68,14 +66,7 @@ export default function CreateTaskdModal() {
 			boardId: currentActiveBoard.id,
 			subtasks,
 		};
-
-		dispatch(
-			addTask({
-				task: task,
-				boardId: currentActiveBoard.id,
-				columnId: selectedStatus,
-			})
-		);
+		dispatch(addTask(task));
 		reset();
 		if (document) {
 			(document.getElementById(createTaskModalId) as HTMLFormElement).close();

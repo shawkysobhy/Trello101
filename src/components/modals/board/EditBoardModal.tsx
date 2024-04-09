@@ -6,7 +6,6 @@ import { useFieldArray } from 'react-hook-form';
 import FormRow from '../../../ui/FormRow';
 import CrossIcon from '../../../assets/icon-chevron-down.svg';
 import { editBoard } from '../../../state/BoardsSlilce';
-import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../state/store';
 import { useEffect } from 'react';
@@ -23,6 +22,7 @@ export default function EditBoardModal() {
 	);
 	const { currentActiveBoard } = useBoard();
 	const columns = currentActiveBoard.columns;
+	
 
 	const methods = useForm({
 		defaultValues: {
@@ -34,6 +34,7 @@ export default function EditBoardModal() {
 		handleSubmit,
 		control,
 		reset,
+		getValues,
 		formState: { errors },
 	} = methods;
 	useEffect(() => {
@@ -49,6 +50,7 @@ export default function EditBoardModal() {
 		control,
 	});
 	const onSubmit: SubmitHandler<any> = (data) => {
+		console.log(data)
 		dispatch(
 			editBoard({
 				boardId: activeBoardId,
@@ -116,7 +118,7 @@ export default function EditBoardModal() {
 									color='primary'
 									type='button'
 									onClick={() =>
-										append({ column: '', id: uuidv4(), tasks: [] })
+										append({ column: '', id:(getValues('columnNumbers').length).toString(), tasks: [] })
 									}>
 									{' '}
 									Add New Column

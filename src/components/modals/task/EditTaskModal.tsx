@@ -14,7 +14,7 @@ import { editTask } from '../../../state/BoardsSlilce';
 import useBoard from '../../hooks/useBoard';
 import { editTaskModalId } from '../../utils/utils';
 import useActiveState from '../../hooks/useActiveState';
-import TaskCard from '../../TaskCard';
+// import TaskCard from '../../TaskCard';
 function findTask(columns: Column[], columnId: string, taskId: string) {
 	const column = columns.find((col) => col.id === columnId);
 	const task = column?.tasks?.find((task) => task.id === taskId);
@@ -24,7 +24,6 @@ function findTask(columns: Column[], columnId: string, taskId: string) {
 interface newColumn {
 	newColumnId: string;
 }
-
 export type CombinedInterface = Task & newColumn;
 
 export default function EditTaskModal() {
@@ -33,14 +32,13 @@ export default function EditTaskModal() {
 	const columns = currentActiveBoard.columns;
 	const dispatch = useDispatch();
 	const methods = useForm<CombinedInterface>({});
-
+	const [newColumn, setNewColumn] = useState<string>();
 	const {
 		handleSubmit,
 		control,
 		setValue,
 		getValues,
 		reset,
-		register,
 		formState: { errors },
 	} = methods;
 	const { fields } = useFieldArray({
@@ -54,15 +52,19 @@ export default function EditTaskModal() {
 			activeTaskId
 		);
 		reset(currentTask);
+		setNewColumn(currentTask?.columnId);
 	}, [activeTaskId, activeColumnId, currentActiveBoard]);
+
 	const handleCheckboxChange = (index: number) => {
 		const updatedSubtTasks: SubTask[] = getValues('subtasks') || [];
 		updatedSubtTasks[index].isChecked = !updatedSubtTasks[index].isChecked;
 		setValue('subtasks', updatedSubtTasks);
 	};
-	const onSubmit: SubmitHandler<CombinedInterface> = (data) => {
+
+	const onSubmit: SubmitHandler<Task> = (data) => {
 		console.log(data);
-		dispatch(editTask(data));
+		console.log(newColumn);
+		dispatch(editTask({ task: data, newColumnId: newColumn }));
 		reset();
 		if (document) {
 			(document.getElementById(editTaskModalId) as HTMLFormElement).close();
@@ -121,10 +123,10 @@ export default function EditTaskModal() {
 									</div>
 									<FormRow error={errors.status}>
 										<select
-											{...register('newColumnId')}
-											className=' mb-10  text-[14px]   w-full font-semibold   rounded-md   bg-background px-4 py-3 border border-[#635fc7] '
-											// onChange={handleEditColumn}
-										>
+											onChange={(e) => {
+												setNewColumn(e.target.value);
+											}}
+											className=' mb-10  text-[14px]   w-full font-semibold   rounded-md   bg-background px-4 py-3 border border-[#635fc7] '>
 											{columns.map((column, index) => (
 												<option key={index} value={column.id}>
 													{column.column}
