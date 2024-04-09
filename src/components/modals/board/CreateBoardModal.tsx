@@ -1,16 +1,16 @@
 import { createPortal } from 'react-dom';
-import { TextInput, ModalButton } from '../../ui';
+import { TextInput, ModalButton } from '../../../ui';
 import { useDispatch } from 'react-redux';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { useFieldArray } from 'react-hook-form';
-import FormRow from '../../ui/FormRow';
-import CrossIcon from '../../assets/icon-cross.svg';
-import { addBoard } from '../../state/BoardsSlilce';
-import { Board } from '../../state/models';
+import FormRow from '../../../ui/FormRow';
+import CrossIcon from '../../../assets/icon-chevron-down.svg';
+import { addBoard } from '../../../state/BoardsSlilce';
+import { Board } from '../../../state/models';
 import { v4 as uuidv4 } from 'uuid';
-import { Column } from '../../state/models';
-import { setActiveId } from '../../state/ActiveBoardSlice';
-import { createModalBoardId } from '../utils/utils';
+import { Column } from '../../../state/models';
+import { setActiveBoardId } from '../../../state/ActiveBoardSlice';
+import { createModalBoardId } from '../../utils/utils';
 export type FormFields = {
 	name: string;
 	columnNumbers?: { column: string }[];
@@ -49,9 +49,8 @@ export default function CreateBoardModal() {
 		};
 
 		dispatch(addBoard(board));
-		dispatch(setActiveId(boardId));
+		dispatch(setActiveBoardId(boardId));
 		reset();
-		console.log(columns)
 		if (document) {
 			(document.getElementById(createModalBoardId) as HTMLFormElement).close();
 		}

@@ -8,6 +8,8 @@ export interface Task {
 	title: string;
 	description: string;
 	status: string;
+	columnId:string;
+	boardId:string;
 	subtasks: SubTask[];
 }
 

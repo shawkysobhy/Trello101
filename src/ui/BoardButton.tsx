@@ -1,7 +1,7 @@
 import React from 'react';
 import BoardIcon from '../assets/icon-board';
 import { useDispatch } from 'react-redux';
-import { setActiveId } from '../state/ActiveBoardSlice';
+import { setActiveBoardId } from '../state/ActiveBoardSlice';
 type BoardButtonProps = {
 	children: React.ReactNode;
 	active?: string;
@@ -16,7 +16,7 @@ export default function BoardButtton({
 	return (
 		<button
 			onClick={() => {
-				dispatch(setActiveId(id))
+				dispatch(setActiveBoardId(id));
 				if (document) {
 					(
 						document?.getElementById('navigate_board_modal') as HTMLFormElement

@@ -9,27 +9,9 @@ export const boardsV1: Board[] = [
 				column: 'Todo',
 				tasks: [
 					{
-						id: '0',
-						title: 'Build UI for onboarding flow',
-						description: '',
-						status: 'Todo',
-						subtasks: [
-							{
-								title: 'Sign up page',
-								isChecked: true,
-							},
-							{
-								title: 'Sign in page',
-								isChecked: false,
-							},
-							{
-								title: 'Welcome page',
-								isChecked: false,
-							},
-						],
-					},
-					{
 						id: '1',
+						columnId: '0',
+						boardId: '0',
 						title: 'Build UI for search',
 						description: '',
 						status: 'Todo',
@@ -41,7 +23,9 @@ export const boardsV1: Board[] = [
 						],
 					},
 					{
-						id: '2',
+						columnId: '0',
+						boardId: '0',
+						id: '1se',
 						title: 'Build settings UI',
 						description: '',
 						status: 'Todo',
@@ -58,6 +42,9 @@ export const boardsV1: Board[] = [
 					},
 					{
 						id: '3',
+						columnId: '0',
+						boardId: '0',
+
 						title: 'QA and test all major user journeys',
 						description:
 							'Once we feel version one is ready, we need to rigorously test it both internally and externally to identify any major gaps.',
@@ -81,6 +68,8 @@ export const boardsV1: Board[] = [
 				tasks: [
 					{
 						id: '4',
+						boardId: '0',
+						columnId: '1',
 						title: 'Design settings and search pages',
 						description: '',
 						status: 'Doing',
@@ -101,6 +90,9 @@ export const boardsV1: Board[] = [
 					},
 					{
 						id: '5',
+						boardId: '0',
+						columnId: '1',
+
 						title: 'Add account management endpoints',
 						description: '',
 						status: 'Doing',
@@ -121,6 +113,9 @@ export const boardsV1: Board[] = [
 					},
 					{
 						id: '6',
+						boardId: '0',
+						columnId: '1',
+
 						title: 'Design onboarding flow',
 						description: '',
 						status: 'Doing',
@@ -139,61 +134,6 @@ export const boardsV1: Board[] = [
 							},
 						],
 					},
-					{
-						id: '7',
-						title: 'Add search enpoints',
-						description: '',
-						status: 'Doing',
-						subtasks: [
-							{
-								title: 'Add search endpoint',
-								isChecked: true,
-							},
-							{
-								title: 'Define search filters',
-								isChecked: false,
-							},
-						],
-					},
-					{
-						id: '8',
-						title: 'Add authentication endpoints',
-						description: '',
-						status: 'Doing',
-						subtasks: [
-							{
-								title: 'Define user model',
-								isChecked: true,
-							},
-							{
-								title: 'Add auth endpoints',
-								isChecked: false,
-							},
-						],
-					},
-					{
-						id: '9',
-						title:
-							'Research pricing points of various competitors and trial different business models',
-						description:
-							"We know what we're planning to build for version one. Now we need to finalise the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition.",
-						status: 'Doing',
-						subtasks: [
-							{
-								title: 'Research competitor pricing and business models',
-								isChecked: true,
-							},
-							{
-								title: 'Outline a business model that works for our solution',
-								isChecked: false,
-							},
-							{
-								title:
-									'Talk to potential customers about our proposed solution and ask for fair price expectancy',
-								isChecked: false,
-							},
-						],
-					},
 				],
 			},
 			{
@@ -202,6 +142,9 @@ export const boardsV1: Board[] = [
 				tasks: [
 					{
 						id: '10',
+						columnId: '2',
+						boardId: '0',
+
 						title: 'Conduct 5 wireframe tests',
 						description:
 							'Ensure the layout continues to make sense and we have strong buy-in from potential users.',
@@ -213,21 +156,11 @@ export const boardsV1: Board[] = [
 							},
 						],
 					},
-					{
-						id: '11',
-						title: 'Create wireframe prototype',
-						description:
-							'Create a greyscale clickable wireframe prototype to test our asssumptions so far.',
-						status: 'Done',
-						subtasks: [
-							{
-								title: 'Create clickable wireframe prototype in Balsamiq',
-								isChecked: true,
-							},
-						],
-					},
+
 					{
 						id: '12',
+						columnId: '2',
+						boardId: '0',
 						title: 'Review results of usability tests and iterate',
 						description:
 							"Keep iterating through the subtasks until we're clear on the core concepts for the app.",
@@ -249,37 +182,10 @@ export const boardsV1: Board[] = [
 						],
 					},
 					{
-						id: '13',
-						title:
-							'Create paper prototypes and conduct 10 usability tests with potential customers',
-						description: '',
-						status: 'Done',
-						subtasks: [
-							{
-								title: 'Create paper prototypes for version one',
-								isChecked: true,
-							},
-							{
-								title: 'Complete 10 usability tests',
-								isChecked: true,
-							},
-						],
-					},
-					{
-						id: '14',
-						title: 'Market discovery',
-						description:
-							'We need to define and refine our core product. Interviews will help us learn common pain points and help us define the strongest MVP.',
-						status: 'Done',
-						subtasks: [
-							{
-								title: 'Interview 10 prospective customers',
-								isChecked: true,
-							},
-						],
-					},
-					{
 						id: '15',
+						columnId: '2',
+						boardId: '0',
+
 						title: 'Competitor analysis',
 						description: '',
 						status: 'Done',
@@ -290,23 +196,6 @@ export const boardsV1: Board[] = [
 							},
 							{
 								title: 'SWOT analysis for each competitor',
-								isChecked: true,
-							},
-						],
-					},
-					{
-						id: '16',
-						title: 'Research the market',
-						description:
-							'We need to get a solid overview of the market to ensure we have up-to-date estimates of market size and demand.',
-						status: 'Done',
-						subtasks: [
-							{
-								title: 'Write up research analysis',
-								isChecked: true,
-							},
-							{
-								title: 'Calculate TAM',
 								isChecked: true,
 							},
 						],
@@ -324,6 +213,9 @@ export const boardsV1: Board[] = [
 				column: 'Todo',
 				tasks: [
 					{
+						columnId: '0',
+						boardId: '1',
+
 						id: '17',
 						title: 'Plan Product Hunt launch',
 						description: '11',
@@ -357,11 +249,14 @@ export const boardsV1: Board[] = [
 					},
 					{
 						id: '18',
+						columnId: '0',
+						boardId: '1',
+
 						title: 'Share on Show HN',
 						description: '',
 						status: 'Todo',
 						subtasks: [
-							{  title: 'Draft out HN post', isChecked: false },
+							{ title: 'Draft out HN post', isChecked: false },
 							{
 								title: 'Get feedback and refine',
 								isChecked: false,
@@ -374,6 +269,9 @@ export const boardsV1: Board[] = [
 					},
 					{
 						id: '19',
+						columnId: '0',
+						boardId: '1',
+
 						title: 'Write launch article to publish on multiple channels',
 						description: '',
 						status: 'Todo',
@@ -415,6 +313,8 @@ export const boardsV1: Board[] = [
 				tasks: [
 					{
 						id: '20',
+						boardId: '2',
+						columnId: '0',
 						title: 'Launch version one',
 						description: '',
 						status: 'Now',
@@ -431,6 +331,8 @@ export const boardsV1: Board[] = [
 					},
 					{
 						id: '21',
+						boardId: '2',
+						columnId: '0',
 						title: 'Review early feedback and plan next steps for roadmap',
 						description:
 							"Beyond the initial launch, we're keeping the initial roadmap completely empty. This meeting will help us plan out our next steps based on actual customer feedback.",

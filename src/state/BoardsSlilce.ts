@@ -25,20 +25,20 @@ const boardsSlice = createSlice({
 			action: PayloadAction<{
 				boardId: string;
 				name: string;
-				columns?: Column[]       ;
+				columns?: Column[];
 			}>
 		) {
 			const { boardId, name, columns } = action.payload;
 			const index = state.boards.findIndex((board) => board.id === boardId);
 			const currentColumn = current(state.boards[index].columns);
-			const newColumns:Column[] =
+			const newColumns: Column[] =
 				columns?.filter(
 					(column) =>
 						!currentColumn.some((currColumn) => currColumn.id === column.id)
 				) || [];
 			if (index !== -1) {
 				state.boards[index].name = name ?? state.boards[index].name;
-				state.boards[index].columns.push(...newColumns)
+				state.boards[index].columns.push(...newColumns);
 			}
 		},
 		addTask(
@@ -54,15 +54,33 @@ const boardsSlice = createSlice({
 			const columnIndex = state.boards[boardIndex].columns.findIndex(
 				(column) => column.id === columnId
 			);
-			console.log(boardIndex,columnIndex)
 			if (boardIndex !== -1 && columnIndex !== -1) {
-				console.log('redux task',task)
-					state.boards[boardIndex].columns[columnIndex].tasks?.push(task);
+				state.boards[boardIndex].columns[columnIndex].tasks?.push(task);
+			}
+		},
+		editTask(state, action: PayloadAction<Task>) {
+			const { columnId, boardId, id } = action.payload;
+			const boardIndex = state.boards.findIndex(
+				(board) => board.id === boardId
+			);
+			const columnIndex = state.boards[boardIndex]?.columns.findIndex(
+				(column) => column.id === columnId
+			);
+			const taskIndex = state.boards[boardIndex].columns[
+				columnIndex
+			]?.tasks?.findIndex((task) => task.id === id);
+			if (taskIndex === undefined) return;
+			const board = state?.boards[boardIndex];
+			const column = board?.columns[columnIndex];
+			const tasks = column?.tasks;
+			if (board && column && tasks) {
+				tasks[taskIndex] = action.payload;
+				state.boards[boardIndex].columns[columnIndex].tasks=tasks;
 			}
 		},
 	},
 });
 
 export default boardsSlice.reducer;
-export const { addBoard, deleteBoard, editBoard, addTask } =
+export const { addBoard, deleteBoard, editBoard, addTask, editTask } =
 	boardsSlice.actions;

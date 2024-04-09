@@ -1,15 +1,15 @@
 import { createPortal } from 'react-dom';
-import { TextInput, ModalButton } from '../../ui';
+import { TextInput, ModalButton } from '../../../ui';
 import { useDispatch } from 'react-redux';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { useFieldArray } from 'react-hook-form';
-import FormRow from '../../ui/FormRow';
-import CrossIcon from '../../assets/icon-cross.svg';
-import { addTask } from '../../state/BoardsSlilce';
+import FormRow from '../../../ui/FormRow';
+import CrossIcon from '../../../assets/icon-chevron-down.svg';
+import { addTask } from '../../../state/BoardsSlilce';
 import { v4 as uuidv4 } from 'uuid';
-import { createTaskId } from '../utils/utils';
-import { Task, SubTask } from '../../state/models';
-import useBoard from '../hooks/useBoard';
+import { createTaskModalId } from '../../utils/utils';
+import { Task, SubTask } from '../../../state/models';
+import useBoard from '../../hooks/useBoard';
 import { useEffect, useState } from 'react';
 export type FormFields = {
 	id: string;
@@ -20,16 +20,13 @@ export type FormFields = {
 };
 export default function CreateTaskdModal() {
 	const { currentActiveBoard } = useBoard();
-	// const boardId = currentActiveBoard.id;
 	const dispatch = useDispatch();
 	const [selectedStatus, setSelectedStatus] = useState(
 		currentActiveBoard.columns[0].id
 	);
 	const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-		console.log(event.target.value);
 		setSelectedStatus(event.target.value);
 	};
-	console.log('selectedStatus', selectedStatus);
 	const columns = currentActiveBoard.columns;
 	const methods = useForm<FormFields>({
 		defaultValues: {
@@ -68,6 +65,8 @@ export default function CreateTaskdModal() {
 			title: data.title,
 			description: data.description,
 			status: selectedStatus,
+			columnId: selectedStatus,
+			boardId: currentActiveBoard.id,
 			subtasks,
 		};
 
@@ -80,11 +79,11 @@ export default function CreateTaskdModal() {
 		);
 		reset();
 		if (document) {
-			(document.getElementById(createTaskId) as HTMLFormElement).close();
+			(document.getElementById(createTaskModalId) as HTMLFormElement).close();
 		}
 	};
 	return createPortal(
-		<dialog id={createTaskId} className=' modal'>
+		<dialog id={createTaskModalId} className=' modal'>
 			<div className='modal-box modal-custom-container'>
 				<h3 className='mb-8 text-base font-semibold'>Add New Board</h3>
 				<FormProvider {...methods}>

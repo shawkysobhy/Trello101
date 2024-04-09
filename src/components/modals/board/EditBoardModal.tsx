@@ -1,16 +1,16 @@
 import { createPortal } from 'react-dom';
-import { TextInput, ModalButton } from '../../ui';
+import { TextInput, ModalButton } from '../../../ui';
 import { useDispatch } from 'react-redux';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { useFieldArray } from 'react-hook-form';
-import FormRow from '../../ui/FormRow';
-import CrossIcon from '../../assets/icon-cross.svg';
-import { editBoard } from '../../state/BoardsSlilce';
+import FormRow from '../../../ui/FormRow';
+import CrossIcon from '../../../assets/icon-chevron-down.svg';
+import { editBoard } from '../../../state/BoardsSlilce';
 import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../state/store';
+import { RootState } from '../../../state/store';
 import { useEffect } from 'react';
-import useBoard from '../hooks/useBoard';
+import useBoard from '../../hooks/useBoard';
 
 export type FormFields = {
 	name: string;
@@ -37,7 +37,10 @@ export default function EditBoardModal() {
 		formState: { errors },
 	} = methods;
 	useEffect(() => {
-		reset({ name: currentActiveBoard.name, columnNumbers: currentActiveBoard.columns });
+		reset({
+			name: currentActiveBoard.name,
+			columnNumbers: currentActiveBoard.columns,
+		});
 	}, [activeBoardId, currentActiveBoard]);
 
 	const dispatch = useDispatch();
