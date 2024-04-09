@@ -9,3 +9,10 @@ export const modalOpenHandler = (id: string) => {
 		(document.getElementById(id) as HTMLFormElement).showModal();
 	}
 };
+
+export const findIndexById = (
+	arr: {
+		id: string;
+	}[],
+	id: string
+) => arr.findIndex((ele) => ele.id === id);

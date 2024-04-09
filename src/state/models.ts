@@ -17,7 +17,7 @@ export interface Column {
 	id: string;
 	column: string;
 	color?: string;
-	tasks?: Task[];
+	tasks?: Task[]|[];
 }
 export interface Board {
 	name: string;

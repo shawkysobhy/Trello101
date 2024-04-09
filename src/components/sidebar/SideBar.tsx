@@ -1,10 +1,5 @@
-import { useState } from 'react';
-import MoonIcon from '../../assets/icon-dark-theme.svg';
-import SunIcon from '../../assets/icon-light-theme.svg';
-import hideSidebar from '../../assets/icon-hide-sidebar.svg';
 import BoardList from '../board/BoardList';
 export default function SideBar() {
-	const [checked, setIsChecked] = useState(false);
 	return (
 		<div
 			className='overflow-y-auto hidden md:flex fixed flex-col justify-between bg-background  min-w-[300px] z-10  border-r border-border
@@ -17,7 +12,8 @@ export default function SideBar() {
 			</div>
 			<div>
 				<div className='ml-12'>
-					<div className=' py-8 px-8 bg-secondaryBackground w-[240px] rounded-lg flex items-center justify-center space-x-6 '>
+					{/* <ToggleModeButton/> */}
+					{/* <div className=' py-8 px-8 bg-secondaryBackground w-[240px] rounded-lg flex items-center justify-center space-x-6 '>
 						<img src={MoonIcon} />
 						<input
 							type='checkbox'
@@ -27,11 +23,11 @@ export default function SideBar() {
 							checked={checked}
 						/>
 						<img src={SunIcon} />
-					</div>
-					<div className='flex items-center px-8 py-4 space-x-6'>
+					</div> */}
+					{/* <div className='flex items-center px-8 py-4 space-x-6'>
 						<img src={hideSidebar} />
 						<p className='text-base font-bold'>Hide Sidebar</p>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { useFieldArray } from 'react-hook-form';
 import FormRow from '../../../ui/FormRow';
-import CrossIcon from '../../../assets/icon-chevron-down.svg';
+import CrossIcon from '../../../assets/icon-cross.svg';
 import { addTask } from '../../../state/BoardsSlilce';
 import { v4 as uuidv4 } from 'uuid';
 import { createTaskModalId } from '../../utils/utils';
@@ -32,7 +32,7 @@ export default function CreateTaskdModal() {
 		defaultValues: {
 			title: '',
 			description: '',
-			subtasks: [{ title: '' }],
+			subtasks: [{ title: 'completed' }],
 		},
 	});
 	const {
@@ -55,17 +55,16 @@ export default function CreateTaskdModal() {
 		const subtasks: SubTask[] =
 			data.subtasks?.map((subtask) => {
 				return {
-					// id: uuidv4(),
 					title: subtask.title,
 					isChecked: false,
 				};
 			}) || [];
 		const task: Task = {
 			id: taskId,
+			columnId: selectedStatus,
 			title: data.title,
 			description: data.description,
 			status: selectedStatus,
-			columnId: selectedStatus,
 			boardId: currentActiveBoard.id,
 			subtasks,
 		};
@@ -85,7 +84,7 @@ export default function CreateTaskdModal() {
 	return createPortal(
 		<dialog id={createTaskModalId} className=' modal'>
 			<div className='modal-box modal-custom-container'>
-				<h3 className='mb-8 text-base font-semibold'>Add New Board</h3>
+				<h3 className='mb-8 text-base font-semibold'>Add New Task</h3>
 				<FormProvider {...methods}>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className='flex flex-col space-y-6'>

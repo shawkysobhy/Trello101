@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { ModalButton } from '../../../ui';
@@ -14,24 +14,33 @@ import { editTask } from '../../../state/BoardsSlilce';
 import useBoard from '../../hooks/useBoard';
 import { editTaskModalId } from '../../utils/utils';
 import useActiveState from '../../hooks/useActiveState';
+import TaskCard from '../../TaskCard';
 function findTask(columns: Column[], columnId: string, taskId: string) {
 	const column = columns.find((col) => col.id === columnId);
 	const task = column?.tasks?.find((task) => task.id === taskId);
 	return task;
 }
 
+interface newColumn {
+	newColumnId: string;
+}
+
+export type CombinedInterface = Task & newColumn;
+
 export default function EditTaskModal() {
 	const { currentActiveBoard } = useBoard();
 	const { activeTaskId, activeColumnId } = useActiveState();
 	const columns = currentActiveBoard.columns;
 	const dispatch = useDispatch();
-	const methods = useForm<Task>({});
+	const methods = useForm<CombinedInterface>({});
+
 	const {
 		handleSubmit,
 		control,
 		setValue,
 		getValues,
 		reset,
+		register,
 		formState: { errors },
 	} = methods;
 	const { fields } = useFieldArray({
@@ -51,7 +60,8 @@ export default function EditTaskModal() {
 		updatedSubtTasks[index].isChecked = !updatedSubtTasks[index].isChecked;
 		setValue('subtasks', updatedSubtTasks);
 	};
-	const onSubmit: SubmitHandler<Task> = (data) => {
+	const onSubmit: SubmitHandler<CombinedInterface> = (data) => {
+		console.log(data);
 		dispatch(editTask(data));
 		reset();
 		if (document) {
@@ -111,8 +121,9 @@ export default function EditTaskModal() {
 									</div>
 									<FormRow error={errors.status}>
 										<select
+											{...register('newColumnId')}
 											className=' mb-10  text-[14px]   w-full font-semibold   rounded-md   bg-background px-4 py-3 border border-[#635fc7] '
-											// onChange={handleSelectChange}
+											// onChange={handleEditColumn}
 										>
 											{columns.map((column, index) => (
 												<option key={index} value={column.id}>

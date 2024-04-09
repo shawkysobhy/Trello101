@@ -47,7 +47,6 @@ export default function CreateBoardModal() {
 			name: data.name,
 			columns: columns,
 		};
-
 		dispatch(addBoard(board));
 		dispatch(setActiveBoardId(boardId));
 		reset();
