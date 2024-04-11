@@ -30,20 +30,20 @@ function Header() {
 				<div className='flex items-center space-x-4'>
 					<button
 						onClick={() => modalOpenHandler(createTaskModalId)}
-						className='text-[15px]  hidden md:block bg-brand text-text px-7 py-5 rounded-full font-bold'>
+						className='text-[15px]  hidden md:block bg-brand text-white px-7 py-5 rounded-full font-bold'>
 						+Add New Task
 					</button>
 					<AddTaskMobileButton
 						modalOpenHandler={modalOpenHandler}
 						createTaskModalId={createTaskModalId}
 					/>
-					<div className='dropdown dropdown-end'>
+					<div className='dropdown dropdown-end bg-background'>
 						<button className='px-4 py-2 rounded-full hover:bg-secondaryBackground'>
 							<img src={iconVEllipsis} />
 						</button>
 						<ul
 							tabIndex={0}
-							className=' text-base  flex flex-col  w-[200px] menu dropdown-content z-[1]  shadow bg-base-100 rounded-box  mt-4 px-8 py-6'>
+							className=' text-base  flex flex-col  w-[200px] menu dropdown-content z-[1]  shadow  rounded-box  mt-4 px-8 py-6 bg-background font-semibold'>
 							<li>
 								<button
 									className='p-4'

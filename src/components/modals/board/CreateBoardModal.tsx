@@ -60,13 +60,15 @@ export default function CreateBoardModal() {
 	return createPortal(
 		<dialog id={createModalBoardId} className=' modal'>
 			<div className='modal-box modal-custom-container'>
-				<h3 className='mb-8 text-base font-semibold'>Add New Board</h3>
+				<h3 className='mb-8 text-base font-bold text-text'>
+					Add New Board
+				</h3>
 				<FormProvider {...methods}>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className='flex flex-col space-y-6'>
-							<label className='modal-label '>
+							<label className='modal-label text-subTitle'>
 								<div className='label'>
-									<span className='text-xs font-bold text-text '>Name</span>
+									<span className='text-xs font-bold '>Name</span>
 								</div>
 								<FormRow error={errors.name}>
 									<TextInput
@@ -75,9 +77,9 @@ export default function CreateBoardModal() {
 									/>
 								</FormRow>
 							</label>
-							<label className='modal-label '>
+							<label className='modal-label text-subTitle '>
 								<div className='label'>
-									<span className='text-xs font-bold text-text'>Columns</span>
+									<span className='text-xs font-bold'>Columns</span>
 								</div>
 							</label>
 							{fields?.map((field, index) => {
@@ -108,7 +110,7 @@ export default function CreateBoardModal() {
 									Add New Column
 								</ModalButton>
 								<ModalButton color='primary' type='submit'>
-									Save Chagnes
+									Create New Board
 								</ModalButton>
 							</div>
 						</div>

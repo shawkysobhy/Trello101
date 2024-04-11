@@ -24,7 +24,7 @@ export default function DeleteBoardModal() {
 				<div className='flex flex-col space-y-6'>
 					<p className='text-[14px] font-semibold text-gray'>
 						Are you sure you want to delete the{' '}
-						<span className='font-black text-slate-200 text-[14px]'>
+						<span className='mx-[3px] font-black text-text text-[14px]'>
 							{boardName}
 						</span>{' '}
 						board? This action will remove all columns and tasks and cannot be

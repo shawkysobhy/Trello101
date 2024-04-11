@@ -32,7 +32,16 @@ html {
 	--gray: 130, 143, 163;
 }
 
-
+.light{
+  --brand:99, 95, 199;
+--background:255, 255, 255;
+--secondaryBackground:240, 239, 250;
+--text:0, 0, 0;
+--subTitle:130, 143, 163;
+--scroll:130, 143, 163;
+	--gray:130, 143, 163;
+--border:228, 235, 250;
+}
 ::-webkit-scrollbar {
 	width: 6px;
 	height: 6px;

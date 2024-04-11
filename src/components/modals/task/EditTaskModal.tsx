@@ -80,7 +80,7 @@ export default function EditTaskModal() {
 	return createPortal(
 		<dialog id={editTaskModalId} className='modal'>
 			<div className='modal-box modal-custom-container'>
-				<h3 className='mb-8 text-base font-semibold'>{getValues('title')}</h3>
+				<h3 className='mb-8 text-base font-bold'>{getValues('title')}</h3>
 				<FormProvider {...methods}>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className='flex flex-col space-y-6'>
@@ -106,10 +106,10 @@ export default function EditTaskModal() {
 												type='checkbox'
 												checked={field.isChecked}
 												onChange={() => handleCheckboxChange(index)}
-												className=' checkbox-md checkbox [--chkbg:theme(colors.indigo.600)] [--chkfg:orange]'
+												className=' checkbox-md checkbox [--chkbg:theme(colors.indigo.600)] [--chkfg:orange] border border-brand'
 												name={`subtasks.${index}.title` as const}
 											/>
-											<p className='text-sm font-semibold text-white'>
+											<p className='text-sm font-semibold text-text'>
 												{field.title}
 											</p>
 										</label>
@@ -126,7 +126,7 @@ export default function EditTaskModal() {
 											onChange={(e) => {
 												setNewColumn(e.target.value);
 											}}
-											className=' mb-10  text-[14px]   w-full font-semibold   rounded-md   bg-background px-4 py-3 border border-[#635fc7] '>
+											className=' mb-10  text-[14px]   w-full font-semibold   rounded-md   bg-background px-4 py-3 border border-border '>
 											{columns.map((column, index) => (
 												<option key={index} value={column.id}>
 													{column.column}

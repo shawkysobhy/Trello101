@@ -10,6 +10,14 @@ export const modalOpenHandler = (id: string) => {
 	}
 };
 
+export const modalCloseHandler = (id: string) => {
+	if (document) {
+		(
+			document?.getElementById(id) as HTMLFormElement
+		)?.close();
+	}
+};
+
 export const findIndexById = (
 	arr: {
 		id: string;

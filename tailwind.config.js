@@ -10,7 +10,7 @@ export default {
 				xs: '12px', // 12px
 				sm: '14px', // 14px
 				base: '16px',
-				medium:'20px', // 16px
+				medium: '20px', // 16px
 				lg: '30px', // 18px
 				xl: '1.25rem', // 20px
 				'2xl': '2rem', // 24px

@@ -98,9 +98,8 @@ export default function CreateTaskdModal() {
 								</div>
 								<FormRow error={errors.description}>
 									<textarea
-										className='textarea w-full  px-4 py-3 border border-[#635fc7] rounded-md text-base  bg-[#2b2c37]'
+										className='w-full px-4 py-3 text-base border rounded-md textarea border-brand bg-background'
 										{...register('description')}
-										placeholder='Bio'
 									/>
 								</FormRow>
 							</label>
@@ -130,10 +129,10 @@ export default function CreateTaskdModal() {
 							})}
 							<div className='flex flex-col space-y-4 font-bold text-[14px] '>
 								<ModalButton
-									color='primary'
+									color='secondary'
 									type='button'
 									onClick={() => append({ title: '' })}>
-									Add new subtask
+									+ Add new subtask
 								</ModalButton>
 								<label className='flex flex-col w-full space-y-2 max-w-none '>
 									<div className='label'>
@@ -141,17 +140,17 @@ export default function CreateTaskdModal() {
 									</div>
 									<FormRow error={errors.status}>
 										<select
-											className=' mb-10  text-[14px]   w-full font-semibold   rounded-md   bg-background px-4 py-3 border border-[#635fc7] '
+											className=' mb-10  text-[14px]   w-full font-semibold   rounded-md   bg-background px-4 py-3 border border-brand '
 											onChange={handleSelectChange}>
 											{columns.map((column, index) => (
-												<option key={index} value={column.id}>
+												<option key={index} value={column.id} className='font-medium'>
 													{column.column}
 												</option>
 											))}
 										</select>
 									</FormRow>
 								</label>
-								<ModalButton color='secondary' type='submit'>
+								<ModalButton color='primary' type='submit'>
 									Create Task
 								</ModalButton>
 							</div>

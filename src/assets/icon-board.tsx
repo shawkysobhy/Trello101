@@ -1,4 +1,4 @@
-export default function BoardIcon({ color = '#828FA3' }: { color?: string }) {
+export default function BoardIcon({ color = '#ff00ff' }: { color?: string }) {
 	return (
 		<svg width='16' height='16' xmlns='http://www.w3.org/2000/svg'>
 			<path
