@@ -1,4 +1,44 @@
-# React + TypeScript + Vite
+
+# WildHut Dashboard
+
+![screenshot](/public/trello-screenshot.png)
+
+### fully-functional task management app
+#### Live on [https://trello101.vercel.app/](https://trello101.vercel.app/)
+## Technology Stack
+
+Trello 101  is built using the following technologies:
+
+- **React**
+- **Redux Toolkit**
+- **Typescript**
+- **React Hook Form**
+- **Tailwind CSS**
+- **date fns**
+
+## Features
+
+- ✅ create / update /delete boards or workspace
+- ✅ create /update / delete columns known as category
+- ✅ create  / delete tasks
+- ✅ each task can be have subtask on it 
+- ✅ tasks can be move from category to another in workspace or board  
+- ✅ all work space and task user created save in localstorage 
+ - ✅ have dark / light mode  with store your preference in browser storage  
+
+- ✅ compatible for various screens
+- ✅ handle your inputs and consider you faults when interact with app
+
+
+- - To get started with the Trello 101 , follow these steps:
+
+1. **Installation**: Clone the repository to your local machine.
+   ```bash
+   git clone https://github.com/shawkysobhy/Trello101.git
+   ```
+
+
+### React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
