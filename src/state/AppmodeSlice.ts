@@ -3,18 +3,7 @@ interface Mode {
 	mode: string;
 }
 
-// const [mode, setMode] = useState(() => {
-// 	const storedValue = localStorage.getItem('mode');
-// 	return storedValue ? JSON.parse(storedValue) : 'dark';
-// });
-// useEffect(() => {
-// 	localStorage.setItem('mode', JSON.stringify(mode));
-// 	document.body.classList.add(`body-${mode}`);
-// }, [mode]);
 
-// const initialState: mode = {
-// 	modeName: mode,
-// };
 const storedMode = localStorage.getItem('trello-Appmode');
 const initialState: Mode = storedMode
 	? JSON.parse(storedMode)
