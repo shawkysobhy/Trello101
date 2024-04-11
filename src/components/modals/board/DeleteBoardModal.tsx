@@ -1,10 +1,10 @@
-import { createPortal } from 'react-dom';
-import { ModalButton } from '../../../ui';
 import { useDispatch } from 'react-redux';
-import { deleteBoard } from '../../../state/BoardsSlilce';
+import { createPortal } from 'react-dom';
 import useBoard from '../../hooks/useBoard';
-import { resetState } from '../../../state/ActiveBoardSlice';
 import useActiveState from '../../hooks/useActiveState';
+import { deleteBoard } from '../../../state/BoardsSlilce';
+import { resetState } from '../../../state/ActiveBoardSlice';
+import { ModalButton } from '../../../ui';
 export default function DeleteBoardModal() {
 	const { activeBoardId } = useActiveState();
 

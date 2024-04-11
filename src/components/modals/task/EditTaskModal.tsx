@@ -9,12 +9,11 @@ import {
 	useFieldArray,
 } from 'react-hook-form';
 import FormRow from '../../../ui/FormRow';
-import { Task, SubTask, Column } from '../../../state/models';
+import { Task, SubTask, Column } from '../../../models';
 import { editTask } from '../../../state/BoardsSlilce';
 import useBoard from '../../hooks/useBoard';
-import { editTaskModalId } from '../../utils/utils';
+import { editTaskModalId } from '../../utils';
 import useActiveState from '../../hooks/useActiveState';
-// import TaskCard from '../../TaskCard';
 function findTask(columns: Column[], columnId: string, taskId: string) {
 	const column = columns.find((col) => col.id === columnId);
 	const task = column?.tasks?.find((task) => task.id === taskId);

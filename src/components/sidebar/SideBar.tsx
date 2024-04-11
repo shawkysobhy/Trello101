@@ -1,5 +1,5 @@
 import ToggleModeButton from '../../ui/ToggleModeButton';
-import BoardList from '../board/BoardList';
+import BoardList from '../BoardList';
 import hideSidebar from '../../assets/icon-hide-sidebar.svg';
 import useBoard from '../hooks/useBoard';
 export default function SideBar() {

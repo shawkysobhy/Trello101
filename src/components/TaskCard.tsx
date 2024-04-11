@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { Task } from '../state/models';
-import { editTaskModalId, modalOpenHandler } from './utils/utils';
+import { Task } from '../models';
+import { editTaskModalId, modalOpenHandler } from './utils';
 import { setActiveTask } from '../state/ActiveBoardSlice';
 export default function TaskCard({ task }: { task: Task }) {
 	const dispatch = useDispatch();
@@ -14,7 +14,10 @@ export default function TaskCard({ task }: { task: Task }) {
 			onClick={() => {
 				modalOpenHandler(editTaskModalId);
 				dispatch(
-					setActiveTask({ activeTaskId: task.id, activeColumnId: task.columnId })
+					setActiveTask({
+						activeTaskId: task.id,
+						activeColumnId: task.columnId,
+					})
 				);
 			}}>
 			<p className='text-base font-bold'>{task.title}</p>

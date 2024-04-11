@@ -1,16 +1,14 @@
-import { createPortal } from 'react-dom';
-import { TextInput, ModalButton } from '../../../ui';
-import { useDispatch } from 'react-redux';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
+import { createPortal } from 'react-dom';
+import { useDispatch } from 'react-redux';
 import { useFieldArray } from 'react-hook-form';
-import FormRow from '../../../ui/FormRow';
-import CrossIcon from '../../../assets/icon-cross.svg';
-import { addBoard } from '../../../state/BoardsSlilce';
-import { Board } from '../../../state/models';
-import { Column } from '../../../state/models';
 import { setActiveBoardId } from '../../../state/ActiveBoardSlice';
-import { createModalBoardId, navigateModalBoardId } from '../../utils/utils';
+import { FormRow, TextInput, ModalButton } from '../../../ui';
+import { Board, Column } from '../../../models';
+import { createModalBoardId, navigateModalBoardId } from '../../utils';
+import CrossIcon from '../../../assets/icon-cross.svg';
 import useBoard from '../../hooks/useBoard';
+import { addBoard } from '../../../state/BoardsSlilce';
 export type FormFields = {
 	name: string;
 	columnNumbers?: { column: string }[];
@@ -34,7 +32,7 @@ export default function CreateBoardModal() {
 		control,
 	});
 	const { boards } = useBoard();
-	const boardId = (boards.length).toString();
+	const boardId = boards.length.toString();
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
 		const columns: Column[] = (data.columnNumbers?.map((column, index) => {
 			return {
@@ -53,16 +51,15 @@ export default function CreateBoardModal() {
 		reset();
 		if (document) {
 			(document.getElementById(createModalBoardId) as HTMLFormElement).close();
-			(document.getElementById(navigateModalBoardId) as HTMLFormElement).close();
+			(
+				document.getElementById(navigateModalBoardId) as HTMLFormElement
+			).close();
 		}
-		
 	};
 	return createPortal(
 		<dialog id={createModalBoardId} className=' modal'>
 			<div className='modal-box modal-custom-container'>
-				<h3 className='mb-8 text-base font-bold text-text'>
-					Add New Board
-				</h3>
+				<h3 className='mb-8 text-base font-bold text-text'>Add New Board</h3>
 				<FormProvider {...methods}>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className='flex flex-col space-y-6'>

@@ -5,6 +5,7 @@ import FormRow from './FormRow';
 import Logo from './Logo';
 import ModalButton from './ModalButton';
 import TextInput from './TextInput';
+import ToggleModeButton from './ToggleModeButton';
 export {
 	BoardButton,
 	AddTaskMobileButton,
@@ -13,4 +14,5 @@ export {
 	Logo,
 	ModalButton,
 	TextInput,
+	ToggleModeButton,
 };

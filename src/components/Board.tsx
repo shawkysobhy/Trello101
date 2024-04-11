@@ -1,6 +1,5 @@
-import { Board as BoardProps } from '../../state/models';
-import Column from './Column';
-import NewColumn from './NewColumn';
+import { Board as BoardProps } from '../models';
+import {NewColumn ,Column} from './';
 
 export default function Board({ board }: { board: BoardProps }) {
 	return (

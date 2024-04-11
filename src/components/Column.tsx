@@ -1,10 +1,11 @@
-import { Column as ColumnProp } from '../../state/models';
-import TaskCard from '../TaskCard';
+import { Column as ColumnProp } from '../models';
+import {TaskCard} from './';
 export default function Column({ column }: { column: ColumnProp }) {
-	const randomColor='#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
-const bgColorStyle = {
-	backgroundColor: randomColor,
-};
+	const randomColor =
+		'#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
+	const bgColorStyle = {
+		backgroundColor: randomColor,
+	};
 	return (
 		<div className='w-[280px]   flex-shrink-0 flex flex-col space-y-10     '>
 			<div className='flex flex-row items-center space-x-4'>

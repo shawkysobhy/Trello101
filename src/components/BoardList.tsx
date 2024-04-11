@@ -1,8 +1,8 @@
-import BoardIcon from '../../assets/icon-board';
-import { BoardButton } from '../../ui';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../state/store';
-import { createModalBoardId, modalOpenHandler } from '../utils/utils';
+import { RootState } from '../state/store';
+import { BoardButton } from '../ui';
+import { createModalBoardId, modalOpenHandler } from './utils';
+import BoardIcon from '../assets/icon-board';
 
 export default function BoardList() {
 	const boards = useSelector((state: RootState) => state.boards.boards);

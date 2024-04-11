@@ -8,7 +8,7 @@ import {
 	modalOpenHandler,
 	createTaskModalId,
 	navigateModalBoardId,
-} from './utils/utils';
+} from './utils';
 function Header() {
 	const { currentActiveBoard } = useBoard();
 	return (

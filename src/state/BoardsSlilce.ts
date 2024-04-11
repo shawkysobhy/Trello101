@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice, current } from '@reduxjs/toolkit';
 import { boardsV1 } from '../mock/data';
-import { Board, Column, Task } from './models';
+import { Board, Column, Task } from '../models';
 export interface BoardsState {
 	boards: Board[];
 }

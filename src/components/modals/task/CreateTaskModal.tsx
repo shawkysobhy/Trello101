@@ -1,14 +1,17 @@
 import { createPortal } from 'react-dom';
-import { TextInput, ModalButton } from '../../../ui';
 import { useDispatch } from 'react-redux';
-import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
-import { useFieldArray } from 'react-hook-form';
-import FormRow from '../../../ui/FormRow';
+import {
+	useForm,
+	FormProvider,
+	SubmitHandler,
+	useFieldArray,
+} from 'react-hook-form';
+import { FormRow, TextInput, ModalButton } from '../../../ui';
 import CrossIcon from '../../../assets/icon-cross.svg';
 import { addTask } from '../../../state/BoardsSlilce';
 import { v4 as uuidv4 } from 'uuid';
-import { createTaskModalId } from '../../utils/utils';
-import { Task, SubTask } from '../../../state/models';
+import { createTaskModalId } from '../../utils';
+import { Task, SubTask } from '../../../models';
 import useBoard from '../../hooks/useBoard';
 import { useEffect, useState } from 'react';
 export type FormFields = {
@@ -143,7 +146,10 @@ export default function CreateTaskdModal() {
 											className=' mb-10  text-[14px]   w-full font-semibold   rounded-md   bg-background px-4 py-3 border border-brand '
 											onChange={handleSelectChange}>
 											{columns.map((column, index) => (
-												<option key={index} value={column.id} className='font-medium'>
+												<option
+													key={index}
+													value={column.id}
+													className='font-medium'>
 													{column.column}
 												</option>
 											))}

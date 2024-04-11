@@ -2,7 +2,7 @@ import React from 'react';
 import BoardIcon from '../assets/icon-board';
 import { useDispatch } from 'react-redux';
 import { setActiveBoardId } from '../state/ActiveBoardSlice';
-import { modalCloseHandler,navigateModalBoardId } from '../components/utils/utils';
+import { modalCloseHandler, navigateModalBoardId } from '../components/utils';
 type BoardButtonProps = {
 	children: React.ReactNode;
 	activeBoardId?: string;
@@ -13,7 +13,7 @@ export default function BoardButtton({
 	children,
 	activeBoardId,
 }: BoardButtonProps) {
-	const dispatch=useDispatch()
+	const dispatch = useDispatch();
 	return (
 		<button
 			onClick={() => {
