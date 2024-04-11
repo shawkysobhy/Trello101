@@ -1,4 +1,4 @@
-import { Board } from '../state/models';
+import { Board } from '../models';
 export const boardsV1: Board[] = [
 	{
 		id: '0',
