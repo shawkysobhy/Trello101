@@ -16,8 +16,6 @@ interface Mode {
 // 	modeName: mode,
 // };
 const storedMode = localStorage.getItem('trello-Appmode');
-console.log('stored MOde', storedMode);
-
 const initialState: Mode = storedMode
 	? JSON.parse(storedMode)
 	: { mode: 'dark' };
@@ -33,10 +31,12 @@ const AppModeSlice = createSlice({
 				state.mode = 'dark';
 			}
 			document.body.className = state.mode;
+			const val=state.mode;
 			localStorage.setItem(
 				'trello-Appmode',
-				JSON.stringify({ mode: state.mode })
+				JSON.stringify({ mode: val })
 			);
+			// console.log('hi reduxer');
 		},
 	},
 });

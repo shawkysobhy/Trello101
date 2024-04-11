@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 export default function ToggleModeButton() {
   const dispatch=useDispatch()
 	const mode = useSelector((state: RootState) => state.mode.mode);
-  console.log(mode)
 	return (
 		<div className=' py-8 px-8 bg-secondaryBackground w-[240px] rounded-lg flex items-center justify-center space-x-6 '>
 			<img src={MoonIcon} />

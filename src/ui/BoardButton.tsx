@@ -14,7 +14,6 @@ export default function BoardButtton({
 	activeBoardId,
 }: BoardButtonProps) {
 	const dispatch=useDispatch()
-	console.log(`${activeBoardId ? 'white' : '#ff00ff'}`);
 	return (
 		<button
 			onClick={() => {
