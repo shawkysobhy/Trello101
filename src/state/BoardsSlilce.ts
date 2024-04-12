@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice, current } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { boardsV1 } from '../mock/data';
 import { Board, Column, Task } from '../models';
 export interface BoardsState {
@@ -28,17 +28,8 @@ const boardsSlice = createSlice({
 			}>
 		) {
 			const { boardId, name, columns } = action.payload;
-			const index = state.boards.findIndex((board) => board.id === boardId);
-			const currentColumn = current(state.boards[index].columns);
-			const newColumns: Column[] =
-				columns?.filter(
-					(column) =>
-						!currentColumn.some((currColumn) => currColumn.id === column.id)
-				) || [];
-			if (index !== -1) {
-				state.boards[index].name = name ?? state.boards[index].name;
-				state.boards[index].columns.push(...newColumns);
-			}
+			state.boards[boardId].columns = columns;
+			state.boards[boardId].name = name;
 		},
 
 		addTask(state, action: PayloadAction<Task>) {
@@ -56,28 +47,21 @@ const boardsSlice = createSlice({
 			action: PayloadAction<{ task: Task; newColumnId: string | undefined }>
 		) {
 			const { task, newColumnId } = action.payload;
-			const {columnId,boardId}=task;
-				const Filterdtasks: Task[] = state.boards[boardId].columns[
-					columnId
-				].tasks.filter((ele: Task) => ele.id !== task.id);
+			const { columnId, boardId } = task;
+			const Filterdtasks: Task[] = state.boards[boardId].columns[
+				columnId
+			].tasks.filter((ele: Task) => ele.id !== task.id);
 			//add to new column
 			if (newColumnId !== columnId) {
 				const tasks: Task[] =
 					state.boards[task.boardId].columns[newColumnId].tasks || [];
-				state.boards[boardId].columns[newColumnId].tasks = [
-					task,
-					...tasks,
-				];
-				state.boards[boardId].columns[columnId].tasks = [
-					...Filterdtasks,
-				];
+				state.boards[boardId].columns[newColumnId].tasks = [task, ...tasks];
+				state.boards[boardId].columns[columnId].tasks = [...Filterdtasks];
 			}
 			// const tasks: Task[] = state.boards[boardId].columns[columnId].tasks.filter((ele) => ele.id !== task.id);
-			if (newColumnId == columnId){
+			if (newColumnId == columnId) {
 				state.boards[boardId].columns[columnId].tasks = [task, ...Filterdtasks];
-
 			}
-
 		},
 	},
 });
