@@ -1,8 +1,8 @@
-import { Column as ColumnProp } from '../models';
-import {TaskCard} from './';
+import useRandomColor from '../hooks/useRandomColor';
+import { Column as ColumnProp, Task } from '../models';
+import { TaskCard } from './';
 export default function Column({ column }: { column: ColumnProp }) {
-	const randomColor =
-		'#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
+	const { randomColor } = useRandomColor();
 	const bgColorStyle = {
 		backgroundColor: randomColor,
 	};
@@ -18,7 +18,7 @@ export default function Column({ column }: { column: ColumnProp }) {
 						? 'outline-gray outline-2 outline-dashed for empty stack'
 						: ''
 				}`}>
-				{column.tasks?.map((task, index) => {
+				{column.tasks?.map((task: Task, index: number) => {
 					return <TaskCard key={index} task={task} />;
 				})}
 			</div>

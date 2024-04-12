@@ -6,12 +6,10 @@ import {
 	CreateBoardModal,
 	DeleteBoardModal,
 	NavigateBoardModal,
-} from './components/modals';
-import SideBar from './components/sidebar/SideBar';
-import Header from './components/Header';
-import Boards from './components/BoardContainer';
-import CreateTaskdModal from './components/modals/task/CreateTaskModal';
-import EditTaskModal from './components/modals/task/EditTaskModal';
+} from './modals';
+import {SideBar ,Header,BoardContainer} from './components';
+import CreateTaskdModal from './modals/task/CreateTaskModal';
+import EditTaskModal from './modals/task/EditTaskModal';
 
 function App() {
 	const mode = useSelector((state: RootState) => state.mode.mode);
@@ -23,7 +21,7 @@ function App() {
 			<Header />
 			<main className='relative flex w-full h-full overflow-auto'>
 				<SideBar />
-				<Boards />
+				<BoardContainer />
 			</main>
 			<CreateBoardModal />
 			<EditBoardModal />

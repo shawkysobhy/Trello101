@@ -1,12 +1,7 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../state/store';
-import {Board} from './';
+import { Board } from './';
+import useBoard from '../hooks/useBoard';
 export default function BoardContainer() {
-	const boards = useSelector((state: RootState) => state.boards.boards);
-	const activeBoardId = useSelector(
-		(state: RootState) => state.activeBoardId.activeBoardId
-	);
-
-	const activeBoard = boards.find((board) => board.id === activeBoardId);
+	const { boards, currentActiveBoard:{id} } = useBoard();
+	const activeBoard = boards.find((board) => board.id === id);
 	return <>{activeBoard ? <Board board={activeBoard} /> : <p>not found</p>}</>;
 }

@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
+import { editTaskModalId, modalOpenHandler } from '../utils';
 import { Task } from '../models';
-import { editTaskModalId, modalOpenHandler } from './utils';
 import { setActiveTask } from '../state/ActiveBoardSlice';
 export default function TaskCard({ task }: { task: Task }) {
 	const dispatch = useDispatch();

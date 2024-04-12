@@ -1,4 +1,4 @@
-import { editModalBoardId, modalOpenHandler } from './utils';
+import { editModalBoardId, modalOpenHandler } from '../utils';
 export default function NewColumn() {
 	return (
 		<div

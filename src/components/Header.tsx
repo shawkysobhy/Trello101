@@ -1,14 +1,14 @@
-import iconVEllipsis from '../assets/icon-vertical-ellipsis.svg';
-import ChevronDown from '../assets/icon-chevron-down.svg';
-import { AddTaskMobileButton, Logo } from '../ui';
-import useBoard from './hooks/useBoard';
+import useBoard from '../hooks/useBoard';
 import {
 	deleteModalBoardId,
 	editModalBoardId,
 	modalOpenHandler,
 	createTaskModalId,
 	navigateModalBoardId,
-} from './utils';
+} from '../utils';
+import iconVEllipsis from '../assets/icon-vertical-ellipsis.svg';
+import ChevronDown from '../assets/icon-chevron-down.svg';
+import { AddTaskMobileButton, Logo } from '../ui';
 function Header() {
 	const { currentActiveBoard } = useBoard();
 	return (

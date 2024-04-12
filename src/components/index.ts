@@ -5,6 +5,7 @@ import Column from './Column';
 import NewColumn from './NewColumn';
 import Header from './Header';
 import TaskCard from './TaskCard';
+import SideBar from './SideBar';
 
 export {
 	Board,
@@ -14,4 +15,5 @@ export {
 	NewColumn,
 	Header,
 	TaskCard,
+	SideBar,
 };

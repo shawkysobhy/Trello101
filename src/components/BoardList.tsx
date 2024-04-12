@@ -1,15 +1,9 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../state/store';
+import { createModalBoardId, modalOpenHandler } from '../utils';
 import { BoardButton } from '../ui';
-import { createModalBoardId, modalOpenHandler } from './utils';
 import BoardIcon from '../assets/icon-board';
-
+import useBoard from '../hooks/useBoard';
 export default function BoardList() {
-	const boards = useSelector((state: RootState) => state.boards.boards);
-	const activeBoardId = useSelector(
-		(state: RootState) => state.activeBoardId.activeBoardId
-	);
-
+	const {boards,currentActiveBoard:{id :activeBoardId}}=useBoard()
 	return (
 		<div className='flex flex-col space-y-2 '>
 			{boards?.map((board) => (

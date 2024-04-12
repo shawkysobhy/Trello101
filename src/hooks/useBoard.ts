@@ -1,4 +1,4 @@
-import { RootState } from '../../state/store';
+import { RootState } from '../state/store';
 import { useSelector } from 'react-redux';
 
 const useBoard = (id?: string) => {
