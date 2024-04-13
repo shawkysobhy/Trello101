@@ -9,9 +9,14 @@ import {
 } from 'react-hook-form';
 import FormRow from '../../ui/FormRow';
 import { Task, SubTask, Column } from '../../models';
-import {  editTask } from '../../state/BoardsSlilce';
+import { editTask } from '../../state/BoardsSlilce';
 import useBoard from '../../hooks/useBoard';
-import { deleteTaskModalId, editTaskModalId, modalCloseHandler, modalOpenHandler } from '../../utils';
+import {
+	deleteTaskModalId,
+	editTaskModalId,
+	modalCloseHandler,
+	modalOpenHandler,
+} from '../../utils';
 import useActiveTask from '../../hooks/useActiveTask';
 function findTask(columns: Column[], columnId: string, taskId: string) {
 	const column = columns.find((col) => col.id === columnId);
@@ -30,20 +35,16 @@ export default function EditTaskModal() {
 	const { taskId, columnId } = activeTask;
 	const columns = currentActiveBoard.columns;
 	const dispatch = useDispatch();
-	const methods = useForm<CombinedInterface>({});
+	const methods = useForm<CombinedInterface>();
 	const [newColumnId, setNewColumnId] = useState<string>('');
-	const {
-		handleSubmit,
-		control,
-		setValue,
-		getValues,
-		reset,
-
-	} = methods;
+	const { handleSubmit, control, setValue, getValues, reset } = methods;
 	const { fields } = useFieldArray({
 		name: 'subtasks',
 		control,
 	});
+	const currentTask = findTask(currentActiveBoard.columns, columnId, taskId);
+	console.log('curr', currentTask);
+
 	useEffect(() => {
 		const currentTask = findTask(currentActiveBoard.columns, columnId, taskId);
 		reset(currentTask);
@@ -74,9 +75,11 @@ export default function EditTaskModal() {
 			<div className='modal-box modal-custom-container'>
 				<div className='flex items-center justify-between mb-8'>
 					<h3 className='font-black text-medium '>{getValues('title')}</h3>
-					<button onClick={()=>{
-						modalOpenHandler(deleteTaskModalId)
-					}} className='px-4 py-2 text-[12px] font-bold text-red-800 bg-red-100 rounded-full hover:opacity-75'>
+					<button
+						onClick={() => {
+							modalOpenHandler(deleteTaskModalId);
+						}}
+						className='px-4 py-2 text-[12px] font-bold text-red-800 bg-red-100 rounded-full hover:opacity-75'>
 						Delete
 					</button>
 				</div>
@@ -122,6 +125,7 @@ export default function EditTaskModal() {
 									</div>
 									<FormRow>
 										<select
+											defaultValue={currentTask?.columnId}
 											onChange={(e) => {
 												setNewColumnId(e.target.value);
 												console.log('e.target', e.target.value);
