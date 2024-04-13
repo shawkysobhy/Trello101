@@ -8,7 +8,7 @@ import {
 	useFieldArray,
 } from 'react-hook-form';
 import { addTask } from '../../state/BoardsSlilce';
-import { createTaskModalId } from '../../utils';
+import { createTaskModalId, modalCloseHandler } from '../../utils';
 import CrossIcon from '../../assets/icon-cross.svg';
 import { Task, SubTask } from '../../models';
 import useBoard from '../../hooks/useBoard';
@@ -52,6 +52,7 @@ export default function CreateTaskdModal() {
 		setSelectedStatus(currentActiveBoard.columns[0].id);
 	}, [currentActiveBoard]);
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
+		console.log(data)
 		const subtasks: SubTask[] =
 			data.subtasks?.map((subtask) => {
 				return {
@@ -64,15 +65,13 @@ export default function CreateTaskdModal() {
 			columnId: selectedStatus,
 			title: data.title,
 			description: data.description,
-			status: selectedStatus,
 			boardId: currentActiveBoard.id,
 			subtasks,
 		};
 		dispatch(addTask(task));
 		reset();
-		if (document) {
-			(document.getElementById(createTaskModalId) as HTMLFormElement).close();
-		}
+		modalCloseHandler(createTaskModalId);
+
 	};
 	return (
 		<dialog id={createTaskModalId} className=' modal'>

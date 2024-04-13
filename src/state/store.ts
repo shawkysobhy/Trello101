@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 // ...
 import BoardsSlice from './BoardsSlilce'
-import ActiveBoardSlice from './ActiveBoardSlice';
+// import ActiveBoardSlice from './ActiveBoardSlice';
 import AppmodeSlice from './AppmodeSlice';
 export const store = configureStore({
 	reducer: {
 		boards:BoardsSlice,
-		activeBoardId:ActiveBoardSlice,
+		// activeBoardId:ActiveBoardSlice,
 		mode:AppmodeSlice,
 	},
 });

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ModalButton } from '../../ui';
+
 import {
 	useForm,
 	FormProvider,
@@ -11,8 +12,8 @@ import FormRow from '../../ui/FormRow';
 import { Task, SubTask, Column } from '../../models';
 import { editTask } from '../../state/BoardsSlilce';
 import useBoard from '../../hooks/useBoard';
-import { editTaskModalId } from '../../utils';
-import useActiveState from '../../hooks/useActiveState';
+import { editTaskModalId, modalCloseHandler, modalOpenHandler } from '../../utils';
+import useActiveTask from '../../hooks/useActiveTask';
 function findTask(columns: Column[], columnId: string, taskId: string) {
 	const column = columns.find((col) => col.id === columnId);
 	const task = column?.tasks?.find((task) => task.id === taskId);
@@ -26,32 +27,29 @@ export type CombinedInterface = Task & newColumn;
 
 export default function EditTaskModal() {
 	const { currentActiveBoard } = useBoard();
-	const { activeTaskId, activeColumnId } = useActiveState();
+	const activeTask = useActiveTask();
+	const { taskId, columnId } = activeTask;
 	const columns = currentActiveBoard.columns;
 	const dispatch = useDispatch();
 	const methods = useForm<CombinedInterface>({});
-	const [newColumn, setNewColumn] = useState<string>();
+	const [newColumnId, setNewColumnId] = useState<string>('');
 	const {
 		handleSubmit,
 		control,
 		setValue,
 		getValues,
 		reset,
-		formState: { errors },
+
 	} = methods;
 	const { fields } = useFieldArray({
 		name: 'subtasks',
 		control,
 	});
 	useEffect(() => {
-		const currentTask = findTask(
-			currentActiveBoard.columns,
-			activeColumnId,
-			activeTaskId
-		);
+		const currentTask = findTask(currentActiveBoard.columns, columnId, taskId);
 		reset(currentTask);
-		setNewColumn(currentTask?.columnId);
-	}, [activeTaskId, activeColumnId, currentActiveBoard]);
+		if (currentTask?.columnId) setNewColumnId(currentTask?.columnId);
+	}, [taskId, columnId, currentActiveBoard]);
 
 	const handleCheckboxChange = (index: number) => {
 		const updatedSubtTasks: SubTask[] = getValues('subtasks') || [];
@@ -60,13 +58,10 @@ export default function EditTaskModal() {
 	};
 
 	const onSubmit: SubmitHandler<Task> = (data) => {
-		console.log(data);
-		console.log(newColumn);
-		dispatch(editTask({ task: data, newColumnId: newColumn }));
+		const task: Task = data;
+		dispatch(editTask({ task: task, newColumnId: newColumnId }));
 		reset();
-		if (document) {
-			(document.getElementById(editTaskModalId) as HTMLFormElement).close();
-		}
+		modalCloseHandler(editTaskModalId);
 	};
 	const checkedTasksCount = getValues('subtasks')?.filter(
 		(subtask) => subtask?.isChecked
@@ -75,9 +70,17 @@ export default function EditTaskModal() {
 		getValues('subtasks')?.length
 	})`;
 
-	return <dialog id={editTaskModalId} className='modal'>
+	return (
+		<dialog id={editTaskModalId} className='modal'>
 			<div className='modal-box modal-custom-container'>
-				<h3 className='mb-8 text-base font-bold'>{getValues('title')}</h3>
+				<div className='flex items-center justify-between mb-8'>
+					<h3 className='font-black text-medium '>{getValues('title')}</h3>
+					<button onClick={()=>{
+						modalOpenHandler('delete_task_modal')
+					}} className='px-4 py-2 text-[12px] font-bold text-red-800 bg-red-100 rounded-full hover:opacity-75'>
+						Delete
+					</button>
+				</div>
 				<FormProvider {...methods}>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className='flex flex-col space-y-6'>
@@ -118,10 +121,11 @@ export default function EditTaskModal() {
 									<div className='label'>
 										<span className='text-xs text-text '>Status</span>
 									</div>
-									<FormRow error={errors.status}>
+									<FormRow>
 										<select
 											onChange={(e) => {
-												setNewColumn(e.target.value);
+												setNewColumnId(e.target.value);
+												console.log('e.target', e.target.value);
 											}}
 											className=' mb-10  text-[14px]   w-full font-semibold   rounded-md   bg-background px-4 py-3 border border-border '>
 											{columns.map((column, index) => (
@@ -144,4 +148,5 @@ export default function EditTaskModal() {
 				<button>close</button>
 			</form>
 		</dialog>
+	);
 }

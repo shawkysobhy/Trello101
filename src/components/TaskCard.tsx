@@ -1,12 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { editTaskModalId, modalOpenHandler } from '../utils';
 import { Task } from '../models';
-import { setActiveTask } from '../state/ActiveBoardSlice';
+import { setActiveTask } from '../state/BoardsSlilce';
 export default function TaskCard({ task }: { task: Task }) {
 	const dispatch = useDispatch();
 	const checkedTasksCount = task.subtasks.filter(
 		(subtask) => subtask.isChecked
 	).length;
+	
 	const checkedTasksString = `${checkedTasksCount} of ${task.subtasks.length}`;
 	return (
 		<div
@@ -15,8 +16,8 @@ export default function TaskCard({ task }: { task: Task }) {
 				modalOpenHandler(editTaskModalId);
 				dispatch(
 					setActiveTask({
-						activeTaskId: task.id,
-						activeColumnId: task.columnId,
+						taskId: task.id,
+						columnId: task.columnId,
 					})
 				);
 			}}>

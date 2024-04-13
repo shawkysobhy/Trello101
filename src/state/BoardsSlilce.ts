@@ -1,11 +1,25 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { boardsV1 } from '../mock/data';
-import { Board, Column, Task } from '../models';
+import { Board, Column } from '../models';
+import { findIndexById } from '../utils';
+import { Task } from '../models';
+export interface activeTask {
+	taskId: string;
+	columnId: string;
+}
 export interface BoardsState {
 	boards: Board[];
+	activeBoard: Board;
+	activeTask: activeTask;
 }
+
 const initialState: BoardsState = {
 	boards: boardsV1,
+	activeBoard: boardsV1[0],
+	activeTask: {
+		taskId: '',
+		columnId: '',
+	},
 };
 const boardsSlice = createSlice({
 	name: 'boards',
@@ -30,42 +44,94 @@ const boardsSlice = createSlice({
 			const { boardId, name, columns } = action.payload;
 			state.boards[boardId].columns = columns;
 			state.boards[boardId].name = name;
+			state.activeBoard = state.boards[boardId];
 		},
-
+		setActiveBoard(state, action: PayloadAction<{ id?: string }>) {
+			const { id } = action.payload;
+			if (!id) {
+				state.activeBoard = state.boards[state.boards.length - 1];
+			} else {
+				const activeBoard = state.boards.find((board) => board.id === id);
+				if (activeBoard) state.activeBoard = activeBoard;
+			}
+		},
 		addTask(state, action: PayloadAction<Task>) {
 			const task = action.payload;
-			console.log('column id', task);
-			const tasks: Task[] =
-				state.boards[task.boardId].columns[task.columnId].tasks || [];
-			state.boards[task.boardId].columns[task.columnId].tasks = [
-				task,
-				...tasks,
-			];
+			const columnIndex = findIndexById(
+				state.activeBoard.columns,
+				task.columnId
+			);
+			const tasks =
+				state.boards[state.activeBoard.id].columns[columnIndex].tasks.slice();
+			const updatedTasks = [task, ...tasks];
+			state.boards[state.activeBoard.id].columns[columnIndex].tasks =
+				updatedTasks;
 		},
 		editTask(
 			state,
-			action: PayloadAction<{ task: Task; newColumnId: string | undefined }>
+			action: PayloadAction<{ task: Task; newColumnId: string }>
 		) {
 			const { task, newColumnId } = action.payload;
-			const { columnId, boardId } = task;
-			const Filterdtasks: Task[] = state.boards[boardId].columns[
-				columnId
-			].tasks.filter((ele: Task) => ele.id !== task.id);
-			//add to new column
-			if (newColumnId !== columnId) {
-				const tasks: Task[] =
-					state.boards[task.boardId].columns[newColumnId].tasks || [];
-				state.boards[boardId].columns[newColumnId].tasks = [task, ...tasks];
-				state.boards[boardId].columns[columnId].tasks = [...Filterdtasks];
+			const boardIndex = findIndexById(state.boards, state.activeBoard.id);
+			const columnIndex = findIndexById(
+				state.activeBoard.columns,
+				state.activeTask.columnId
+			);
+			const newColumnIndex = findIndexById(
+				state.activeBoard.columns,
+				newColumnId
+			);
+			const allTasks = Array.from(
+				state.activeBoard.columns[columnIndex].tasks || []
+			);
+			const filterdTasks =
+				allTasks?.filter((task) => task.id !== action.payload.task.id) || [];
+			if (newColumnId !== state.activeTask.columnId && newColumnId) {
+				const updatedTask = { ...task, columnId: newColumnId };
+				const tasks: Task[] = Array.from(
+					state.boards[boardIndex].columns[newColumnIndex].tasks || []
+				);
+				state.boards[boardIndex].columns[newColumnIndex].tasks = [
+					updatedTask,
+					...tasks,
+				];
+				state.boards[boardIndex].columns[columnIndex].tasks = filterdTasks;
+			} else if (newColumnId == task.columnId) {
+				state.boards[boardIndex].columns[columnIndex].tasks = [
+					task,
+					...filterdTasks,
+				];
 			}
-			// const tasks: Task[] = state.boards[boardId].columns[columnId].tasks.filter((ele) => ele.id !== task.id);
-			if (newColumnId == columnId) {
-				state.boards[boardId].columns[columnId].tasks = [task, ...Filterdtasks];
-			}
+		},
+		deleteTask(
+			state,
+			action: PayloadAction<{
+				id: string;
+				taskIndex: number;
+				columnIndex: number;
+			}>
+		) {
+			const { id, columnIndex } = action.payload;
+			const filterdTasks =state?.activeBoard?.columns[columnIndex]?.tasks?.filter(
+					(task) => task.id !== id
+				) || [];
+			state.boards[state.activeBoard.id].columns[columnIndex].tasks =[...filterdTasks];
+			state.activeBoard=state.boards[state.activeBoard.id]
+		},
+		setActiveTask(state, action: PayloadAction<activeTask>) {
+			state.activeTask = action.payload;
 		},
 	},
 });
 
 export default boardsSlice.reducer;
-export const { addBoard, deleteBoard, editBoard, addTask, editTask } =
-	boardsSlice.actions;
+export const {
+	addBoard,
+	deleteTask,
+	deleteBoard,
+	editBoard,
+	setActiveBoard,
+	addTask,
+	editTask,
+	setActiveTask,
+} = boardsSlice.actions;

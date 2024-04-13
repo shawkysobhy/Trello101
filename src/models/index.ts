@@ -5,12 +5,12 @@ export interface SubTask {
 }
 export interface Task {
 	id: string;
+	boardId: string;
+	columnId: string;
 	title: string;
 	description: string;
-	status: string;
-	columnId: string;
-	boardId: string;
 	subtasks: SubTask[];
+	// status: string;
 }
 
 export interface Column {
@@ -24,3 +24,7 @@ export interface Board {
 	id: string;
 	columns: Column[];
 }
+export interface BoardForm{
+	name: string;
+	columnNumbers?: { column: string }[];
+};

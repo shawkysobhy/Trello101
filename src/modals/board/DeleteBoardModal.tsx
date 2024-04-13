@@ -1,19 +1,17 @@
 import { useDispatch } from 'react-redux';
 import useBoard from '../../hooks/useBoard';
-import useActiveState from '../../hooks/useActiveState';
-import { deleteBoard } from '../../state/BoardsSlilce';
-import { resetState } from '../../state/ActiveBoardSlice';
+import { deleteBoard, setActiveBoard } from '../../state/BoardsSlilce';
+// import { resetState } from '../../state/ActiveBoardSlice';
 import { ModalButton } from '../../ui';
 export default function DeleteBoardModal() {
-	const { activeBoardId } = useActiveState();
-
-	const { boardWithId } = useBoard(activeBoardId);
+	const {
+		currentActiveBoard: { id: activeBoardId, name: boardName },
+	} = useBoard();
 	const dispatch = useDispatch();
 	const deleteBoardHandler = () => {
 		dispatch(deleteBoard(activeBoardId));
-		dispatch(resetState());
+		dispatch(setActiveBoard({}));
 	};
-	const boardName = ` ${boardWithId?.name} `;
 	return (
 		<dialog id='delete_board_modal' className='modal'>
 			<div className='modal-box modal-custom-container'>

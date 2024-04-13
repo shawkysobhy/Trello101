@@ -3,13 +3,17 @@ import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useFieldArray } from 'react-hook-form';
-import { setActiveBoardId } from '../../state/ActiveBoardSlice';
+// import { setActiveBoardId } from '../../state/ActiveBoardSlice';
 import { FormRow, TextInput, ModalButton } from '../../ui';
 import { Board, Column } from '../../models';
-import { createModalBoardId, navigateModalBoardId } from '../../utils';
+import {
+	createModalBoardId,
+	modalCloseHandler,
+	navigateModalBoardId,
+} from '../../utils';
 import CrossIcon from '../../assets/icon-cross.svg';
 import useBoard from '../../hooks/useBoard';
-import { addBoard } from '../../state/BoardsSlilce';
+import { addBoard, setActiveBoard } from '../../state/BoardsSlilce';
 export type FormFields = {
 	name: string;
 	columnNumbers?: { column: string }[];
@@ -18,7 +22,7 @@ export default function CreateBoardModal() {
 	const methods = useForm<FormFields>({
 		defaultValues: {
 			name: '',
-			columnNumbers: [{ column: '' }],
+			columnNumbers: [{ column: 'column 01' }],
 		},
 	});
 	const {
@@ -48,14 +52,11 @@ export default function CreateBoardModal() {
 			columns: columns,
 		};
 		dispatch(addBoard(board));
-		dispatch(setActiveBoardId(boardId));
+
+		dispatch(setActiveBoard({ id: boardId }));
 		reset();
-		if (document) {
-			(document.getElementById(createModalBoardId) as HTMLFormElement).close();
-			(
-				document.getElementById(navigateModalBoardId) as HTMLFormElement
-			).close();
-		}
+		modalCloseHandler(createModalBoardId);
+		modalCloseHandler(navigateModalBoardId);
 	};
 	return (
 		<dialog id={createModalBoardId} className=' modal'>

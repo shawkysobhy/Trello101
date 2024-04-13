@@ -1,7 +1,7 @@
 import SmallErrorMessage from './ErrorMessage';
 type FormRowProps={
 	children:React.ReactNode
-	error:any;
+	error?:any;
 }
 function FormRow({ children, error }:FormRowProps) {
 	return (

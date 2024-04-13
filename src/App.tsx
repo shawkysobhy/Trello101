@@ -10,6 +10,7 @@ import {
 import {SideBar ,Header,BoardContainer} from './components';
 import CreateTaskdModal from './modals/task/CreateTaskModal';
 import EditTaskModal from './modals/task/EditTaskModal';
+import DeleteTaskModal from './modals/task/DeleteTaskModal';
 
 function App() {
 	const mode = useSelector((state: RootState) => state.mode.mode);
@@ -29,6 +30,7 @@ function App() {
 			<NavigateBoardModal />
 			<CreateTaskdModal />
 			<EditTaskModal />
+			<DeleteTaskModal/>
 		</div>
 	);
 }

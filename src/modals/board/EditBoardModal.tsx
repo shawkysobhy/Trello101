@@ -8,7 +8,6 @@ import {
 } from 'react-hook-form';
 import { FormRow, TextInput, ModalButton } from '../../ui';
 import { v4 as uuidv4 } from 'uuid';
-
 import { editBoard } from '../../state/BoardsSlilce';
 import CrossIcon from '../../assets/icon-cross.svg';
 import useBoard from '../../hooks/useBoard';
@@ -72,7 +71,6 @@ export default function EditBoardModal() {
 								</div>
 								<FormRow error={errors.name}>
 									<TextInput
-										disabled={true}
 										name='name'
 										validationRuels={{ required: 'board name required' }}
 									/>
@@ -85,7 +83,7 @@ export default function EditBoardModal() {
 							</label>
 							{fields?.map((field, index) => {
 								const columnTasks =
-									field && field.tasks && field.tasks.length > 0;
+									field && field?.tasks && field?.tasks.length > 0;
 								return (
 									<div
 										className='flex-row items-center space-x-4 form-control'
@@ -109,7 +107,6 @@ export default function EditBoardModal() {
 									</div>
 								);
 							})}
-
 							<div className='flex flex-col space-y-4 font-bold text-[14px] '>
 								<ModalButton
 									color='primary'
