@@ -14,7 +14,6 @@ export const boardsV1: Board[] = [
 						boardId: '0',
 						title: 'Build UI for search',
 						description: '',
-						status: 'Todo',
 						subtasks: [
 							{
 								title: 'Search page',
@@ -28,7 +27,6 @@ export const boardsV1: Board[] = [
 						id: '1se',
 						title: 'Build settings UI',
 						description: '',
-						status: 'Todo',
 						subtasks: [
 							{
 								title: 'Account page',
@@ -48,7 +46,6 @@ export const boardsV1: Board[] = [
 						title: 'QA and test all major user journeys',
 						description:
 							'Once we feel version one is ready, we need to rigorously test it both internally and externally to identify any major gaps.',
-						status: 'Todo',
 						subtasks: [
 							{
 								title: 'Internal testing',
@@ -72,7 +69,6 @@ export const boardsV1: Board[] = [
 						columnId: '1',
 						title: 'Design settings and search pages',
 						description: '',
-						status: 'Doing',
 						subtasks: [
 							{
 								title: 'Settings - Account page',
@@ -95,7 +91,6 @@ export const boardsV1: Board[] = [
 
 						title: 'Add account management endpoints',
 						description: '',
-						status: 'Doing',
 						subtasks: [
 							{
 								title: 'Upgrade plan',
@@ -118,7 +113,6 @@ export const boardsV1: Board[] = [
 
 						title: 'Design onboarding flow',
 						description: '',
-						status: 'Doing',
 						subtasks: [
 							{
 								title: 'Sign up page',
@@ -148,7 +142,6 @@ export const boardsV1: Board[] = [
 						title: 'Conduct 5 wireframe tests',
 						description:
 							'Ensure the layout continues to make sense and we have strong buy-in from potential users.',
-						status: 'Done',
 						subtasks: [
 							{
 								title: 'Complete 5 wireframe prototype tests',
@@ -164,7 +157,6 @@ export const boardsV1: Board[] = [
 						title: 'Review results of usability tests and iterate',
 						description:
 							"Keep iterating through the subtasks until we're clear on the core concepts for the app.",
-						status: 'Done',
 						subtasks: [
 							{
 								title:
@@ -188,7 +180,6 @@ export const boardsV1: Board[] = [
 
 						title: 'Competitor analysis',
 						description: '',
-						status: 'Done',
 						subtasks: [
 							{
 								title: 'Find direct and indirect competitors',
@@ -219,7 +210,6 @@ export const boardsV1: Board[] = [
 						id: '17',
 						title: 'Plan Product Hunt launch',
 						description: '11',
-						status: 'Todo',
 						subtasks: [
 							{
 								title: 'Find hunter',
@@ -254,7 +244,6 @@ export const boardsV1: Board[] = [
 
 						title: 'Share on Show HN',
 						description: '',
-						status: 'Todo',
 						subtasks: [
 							{ title: 'Draft out HN post', isChecked: false },
 							{
@@ -274,7 +263,6 @@ export const boardsV1: Board[] = [
 
 						title: 'Write launch article to publish on multiple channels',
 						description: '',
-						status: 'Todo',
 						subtasks: [
 							{
 								title: 'Write article',
@@ -317,7 +305,6 @@ export const boardsV1: Board[] = [
 						columnId: '0',
 						title: 'Launch version one',
 						description: '',
-						status: 'Now',
 						subtasks: [
 							{
 								title: 'Launch privately to our waitlist',
@@ -336,7 +323,6 @@ export const boardsV1: Board[] = [
 						title: 'Review early feedback and plan next steps for roadmap',
 						description:
 							"Beyond the initial launch, we're keeping the initial roadmap completely empty. This meeting will help us plan out our next steps based on actual customer feedback.",
-						status: 'Now',
 						subtasks: [
 							{
 								title: 'Interview 10 customers',

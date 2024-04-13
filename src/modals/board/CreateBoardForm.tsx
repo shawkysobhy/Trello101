@@ -1,9 +1,7 @@
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-
 import { useFieldArray } from 'react-hook-form';
-// import { setActiveBoardId } from '../../state/ActiveBoardSlice';
 import { FormRow, TextInput, ModalButton } from '../../ui';
 import { Board, Column } from '../../models';
 import {
@@ -18,7 +16,7 @@ export type FormFields = {
 	name: string;
 	columnNumbers?: { column: string }[];
 };
-export default function CreateBoardModal() {
+export default function createBoardModal() {
 	const methods = useForm<FormFields>({
 		defaultValues: {
 			name: '',

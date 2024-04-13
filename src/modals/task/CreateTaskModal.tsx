@@ -52,7 +52,6 @@ export default function CreateTaskdModal() {
 		setSelectedStatus(currentActiveBoard.columns[0].id);
 	}, [currentActiveBoard]);
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
-		console.log(data)
 		const subtasks: SubTask[] =
 			data.subtasks?.map((subtask) => {
 				return {

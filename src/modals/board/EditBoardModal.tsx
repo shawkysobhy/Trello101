@@ -43,7 +43,6 @@ export default function EditBoardModal() {
 	}, [activeBoardId, currentActiveBoard]);
 
 	const onSubmit: SubmitHandler<any> = (data) => {
-		console.log(data.columnNumbers);
 		dispatch(
 			editBoard({
 				boardId: activeBoardId,

@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { boardsV1 } from '../mock/data';
 import { Board, Column } from '../models';
-import { findIndexById } from '../utils';
+import { findIndexById,updateBoardStorge,getStorge } from '../utils';
 import { Task } from '../models';
 export interface activeTask {
 	taskId: string;
@@ -13,25 +13,31 @@ export interface BoardsState {
 	activeTask: activeTask;
 }
 
-const initialState: BoardsState = {
-	boards: boardsV1,
-	activeBoard: boardsV1[0],
-	activeTask: {
-		taskId: '',
-		columnId: '',
-	},
-};
+const boardStorge = getStorge('boards');
+
+const initialState: BoardsState = boardStorge
+	? JSON.parse(boardStorge)
+	: {
+			boards: boardsV1,
+			activeBoard: boardsV1[0],
+			activeTask: {
+				taskId: '',
+				columnId: '',
+			},
+	  };
 const boardsSlice = createSlice({
 	name: 'boards',
 	initialState,
 	reducers: {
 		addBoard(state, action: PayloadAction<Board>) {
 			state?.boards?.push(action.payload);
+			updateBoardStorge('boards', state);
 		},
 		deleteBoard(state, action: PayloadAction<string>) {
 			state.boards = state?.boards?.filter(
 				(board) => board.id !== action.payload
 			);
+			updateBoardStorge('boards', state);
 		},
 		editBoard(
 			state,
@@ -45,6 +51,7 @@ const boardsSlice = createSlice({
 			state.boards[boardId].columns = columns;
 			state.boards[boardId].name = name;
 			state.activeBoard = state.boards[boardId];
+			updateBoardStorge('boards', state);
 		},
 		setActiveBoard(state, action: PayloadAction<{ id?: string }>) {
 			const { id } = action.payload;
@@ -54,6 +61,7 @@ const boardsSlice = createSlice({
 				const activeBoard = state.boards.find((board) => board.id === id);
 				if (activeBoard) state.activeBoard = activeBoard;
 			}
+			updateBoardStorge('boards', state);
 		},
 		addTask(state, action: PayloadAction<Task>) {
 			const task = action.payload;
@@ -66,6 +74,7 @@ const boardsSlice = createSlice({
 			const updatedTasks = [task, ...tasks];
 			state.boards[state.activeBoard.id].columns[columnIndex].tasks =
 				updatedTasks;
+			updateBoardStorge('boards', state);
 		},
 		editTask(
 			state,
@@ -102,6 +111,7 @@ const boardsSlice = createSlice({
 					...filterdTasks,
 				];
 			}
+			updateBoardStorge('boards', state);
 		},
 		deleteTask(
 			state,
@@ -112,14 +122,19 @@ const boardsSlice = createSlice({
 			}>
 		) {
 			const { id, columnIndex } = action.payload;
-			const filterdTasks =state?.activeBoard?.columns[columnIndex]?.tasks?.filter(
+			const filterdTasks =
+				state?.activeBoard?.columns[columnIndex]?.tasks?.filter(
 					(task) => task.id !== id
 				) || [];
-			state.boards[state.activeBoard.id].columns[columnIndex].tasks =[...filterdTasks];
-			state.activeBoard=state.boards[state.activeBoard.id]
+			state.boards[state.activeBoard.id].columns[columnIndex].tasks = [
+				...filterdTasks,
+			];
+			state.activeBoard = state.boards[state.activeBoard.id];
+			updateBoardStorge('boards', state);
 		},
 		setActiveTask(state, action: PayloadAction<activeTask>) {
 			state.activeTask = action.payload;
+			updateBoardStorge('boards', state);
 		},
 	},
 });

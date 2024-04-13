@@ -1,7 +1,11 @@
 import { useDispatch } from 'react-redux';
 import useBoard from '../../hooks/useBoard';
 import { deleteTask } from '../../state/BoardsSlilce';
-import { editTaskModalId, modalCloseHandler } from '../../utils';
+import {
+	deleteTaskModalId,
+	editTaskModalId,
+	modalCloseHandler,
+} from '../../utils';
 import { ModalButton } from '../../ui';
 import { findIndexById } from '../../utils';
 import { Column } from '../../models';
@@ -19,7 +23,6 @@ export default function DeleteTaskModal() {
 
 	const dispatch = useDispatch();
 	const deleteTaskHandler = () => {
-		console.log(task);
 		if (task)
 			dispatch(
 				deleteTask({
@@ -28,11 +31,11 @@ export default function DeleteTaskModal() {
 					taskIndex: taskIndex,
 				})
 			);
-		modalCloseHandler('delete_task_modal');
-    modalCloseHandler(editTaskModalId)
+		modalCloseHandler(deleteTaskModalId);
+		modalCloseHandler(editTaskModalId);
 	};
 	return (
-		<dialog id='delete_task_modal' className='modal'>
+		<dialog id={deleteTaskModalId} className='modal'>
 			<div className='modal-box modal-custom-container'>
 				<h3 className='mb-4 font-bold text-red-600 text-medium'>
 					Delete {task?.title} Task?

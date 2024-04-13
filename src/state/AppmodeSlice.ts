@@ -25,7 +25,6 @@ const AppModeSlice = createSlice({
 				'trello-Appmode',
 				JSON.stringify({ mode: val })
 			);
-			// console.log('hi reduxer');
 		},
 	},
 });

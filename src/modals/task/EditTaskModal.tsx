@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ModalButton } from '../../ui';
-
 import {
 	useForm,
 	FormProvider,
@@ -10,9 +9,9 @@ import {
 } from 'react-hook-form';
 import FormRow from '../../ui/FormRow';
 import { Task, SubTask, Column } from '../../models';
-import { editTask } from '../../state/BoardsSlilce';
+import {  editTask } from '../../state/BoardsSlilce';
 import useBoard from '../../hooks/useBoard';
-import { editTaskModalId, modalCloseHandler, modalOpenHandler } from '../../utils';
+import { deleteTaskModalId, editTaskModalId, modalCloseHandler, modalOpenHandler } from '../../utils';
 import useActiveTask from '../../hooks/useActiveTask';
 function findTask(columns: Column[], columnId: string, taskId: string) {
 	const column = columns.find((col) => col.id === columnId);
@@ -76,7 +75,7 @@ export default function EditTaskModal() {
 				<div className='flex items-center justify-between mb-8'>
 					<h3 className='font-black text-medium '>{getValues('title')}</h3>
 					<button onClick={()=>{
-						modalOpenHandler('delete_task_modal')
+						modalOpenHandler(deleteTaskModalId)
 					}} className='px-4 py-2 text-[12px] font-bold text-red-800 bg-red-100 rounded-full hover:opacity-75'>
 						Delete
 					</button>
